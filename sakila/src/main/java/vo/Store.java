@@ -29,6 +29,4 @@ public class Store {
 	public void setLastUpdate(String lastUpdate) {
 		this.lastUpdate = lastUpdate;
 	}
-	
-	
 }
