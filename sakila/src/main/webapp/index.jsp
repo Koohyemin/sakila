@@ -6,6 +6,10 @@
 <title>Insert title here</title>
 </head>
 <body>
-
+	<h1>INDEX</h1>
+	<ol>
+		<li><a href="<%=request.getContextPath()%>/storeList.jsp">Store List</a></li>
+		<li><a href="<%=request.getContextPath()%>/staffList.jsp">Staff List</a></li>
+	</ol>
 </body>
 </html>
