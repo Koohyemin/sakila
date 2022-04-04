@@ -12,6 +12,7 @@
 		<ol class="list-group">
 			<li class="list-group-item list-group-item-dark text-center"><a href="<%=request.getContextPath()%>/storeList.jsp">Store List</a></li>
 			<li class="list-group-item list-group-item-dark text-center"><a href="<%=request.getContextPath()%>/staffList.jsp">Staff List</a></li>
+			<li class="list-group-item list-group-item-dark text-center"><a href="<%=request.getContextPath()%>/ActorInfoList.jsp">ActorInfo List</a></li>
 		</ol>
 	</div>
 </body>

@@ -2,13 +2,13 @@ package vo;
 
 public class ActorInfo {
 	private int actorId;
-	private String firtstName;
+	private String firstName;
 	private String lastName;
 	private String filmInfo;
 	
 	@Override
 	public String toString() {
-		return "ActorInfo [actorId=" + actorId + ", firtstName=" + firtstName + ", lastName=" + lastName + ", filmInfo="
+		return "ActorInfo [actorId=" + actorId + ", firtstName=" + firstName + ", lastName=" + lastName + ", filmInfo="
 				+ filmInfo + "]";
 	}
 	
@@ -18,11 +18,11 @@ public class ActorInfo {
 	public void setActorId(int actorId) {
 		this.actorId = actorId;
 	}
-	public String getFirtstName() {
-		return firtstName;
+	public String getFirstName() {
+		return firstName;
 	}
-	public void setFirtstName(String firtstName) {
-		this.firtstName = firtstName;
+	public void setFirstName(String firstName) {
+		this.firstName = firstName;
 	}
 	public String getLastName() {
 		return lastName;
