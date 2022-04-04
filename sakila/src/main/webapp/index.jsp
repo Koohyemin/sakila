@@ -9,10 +9,10 @@
 <body>
 	<div class="container">
 	<h1 class="text-center text-info">INDEX</h1>
-	<ol class="list-group">
-		<li class="list-group-item list-group-item-dark text-center"><a href="<%=request.getContextPath()%>/storeList.jsp">Store List</a></li>
-		<li class="list-group-item list-group-item-dark text-center"><a href="<%=request.getContextPath()%>/staffList.jsp">Staff List</a></li>
-	</ol>
-</body>
+		<ol class="list-group">
+			<li class="list-group-item list-group-item-dark text-center"><a href="<%=request.getContextPath()%>/storeList.jsp">Store List</a></li>
+			<li class="list-group-item list-group-item-dark text-center"><a href="<%=request.getContextPath()%>/staffList.jsp">Staff List</a></li>
+		</ol>
 	</div>
+</body>
 </html>

@@ -29,7 +29,6 @@
 			<th>lastUpdate</th>
 		</thead>
 		<tbody>
-			<tr>
 				<%
 					for(Map m : list) {
 				%>
@@ -47,7 +46,6 @@
 				<%
 					}
 				%>
-			</tr>
 		</tbody>
 	</table>
 	</div>
