@@ -13,12 +13,12 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 </head>
 <body>
+	<h1 class="text-center text-info">Store List</h1>
+	<a href="<%=request.getContextPath()%>/index.jsp" class="btn btn-link">index</a>
 	<div class="container-fluid">
 	<table class="table table-dark">
-		<h1 class="text-center text-info">Store List</h1>
-		<a href="<%=request.getContextPath()%>/index.jsp" class="btn btn-link">index</a>
 		<thead>
-			<tr>
+			<tr class="text-info">
 				<th>storeId</th>
 				<th>staffId</th>
 				<th>staffName</th>
@@ -29,11 +29,11 @@
 		</thead>
 		<tbody>
 				<%
-					for(Map m : list) {
+					for(Map<String, Object> m : list) {
 						
 				%>
 						<tr>
-							<td class="text-info"><%=m.get("storeId")%></td>
+							<td><%=m.get("storeId")%></td>
 							<td><%=m.get("staffId")%></td>
 							<td><%=m.get("staffName")%></td>
 							<td><%=m.get("addressId")%></td>

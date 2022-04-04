@@ -29,6 +29,7 @@ public class StoreDao {
 					+ " AND s1.address_id = a.address_id;";
 			stmt = conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
+			// 데이터베이스 변환
 			while(rs.next()) {
 				Map<String,Object> map = new HashMap<>(); // 다형성
 				map.put("storeId", rs.getInt("storeId"));

@@ -26,6 +26,7 @@ public class StaffDao {
 					+ " ON s1.address_id = a.address_id;";
 			stmt = conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
+			// 데이터베이스 변환
 			while(rs.next()) {
 				Map<String, Object> map = new HashMap<>();
 				map.put("staffName", rs.getString("staffName"));

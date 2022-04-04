@@ -28,12 +28,12 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 </head>
 <body>
-	<h1 class="text-center text-info">ActorInfo List</h1>
+	<h1 class="text-center text-info">Actor Info List(view)</h1>
 	<a href="<%=request.getContextPath()%>/index.jsp" class="btn btn-link">index</a>
 	<div class="container-fluid">
 		<!-- actor_info 리스트 -->
 		<table class="table table-dark">
-			<tr>
+			<tr class="text-info">
 				<th>actorId</th>
 				<th>firstName</th>
 				<th>lastName</th>
@@ -43,7 +43,7 @@
 			for(ActorInfo a : list) {
 		%>
 				<tr>
-					<td class="text-info"><%=a.getActorId()%></td>
+					<td><%=a.getActorId()%></td>
 					<td><%=a.getFirstName()%></td>
 					<td><%=a.getLastName()%></td>
 					<td><%=a.getFilmInfo()%></td>
@@ -52,18 +52,19 @@
 			}
 		%>
 		</table>
+		
 		<!-- 이전 / 다음 페이지 -->
 		<%
 		// currentPage가 1보다 크면 이전이 보이도록 하고, 이전을 누르면 currentPage에서 -1값을 보냄
 			if(currentPage > 1) {
 		%>
-				<a href="<%=request.getContextPath()%>/ActorInfoList.jsp?currentPage=<%=currentPage-1%>" class="btn btn-outline-info">이전</a>
+				<a href="<%=request.getContextPath()%>/actorInfoList.jsp?currentPage=<%=currentPage-1%>" class="btn btn-outline-info">이전</a>
 		<%
 			}
 		// currentPage가 lastPage보다 작으면 다음이 보이도록 하고, 다음을 누르면 currentPage에서 +1값을 보냄
 			if(currentPage < lastPage) {
 		%>
-				<a href="<%=request.getContextPath()%>/ActorInfoList.jsp?currentPage=<%=currentPage+1%>" class="btn btn-outline-info">다음</a>
+				<a href="<%=request.getContextPath()%>/actorInfoList.jsp?currentPage=<%=currentPage+1%>" class="btn btn-outline-info">다음</a>
 		<%
 			}
 		%>

@@ -12,7 +12,14 @@
 		<ol class="list-group">
 			<li class="list-group-item list-group-item-dark text-center"><a href="<%=request.getContextPath()%>/storeList.jsp">Store List</a></li>
 			<li class="list-group-item list-group-item-dark text-center"><a href="<%=request.getContextPath()%>/staffList.jsp">Staff List</a></li>
-			<li class="list-group-item list-group-item-dark text-center"><a href="<%=request.getContextPath()%>/ActorInfoList.jsp">ActorInfo List</a></li>
+			<!-- 7개 view 리스트 -->
+			<li class="list-group-item list-group-item-dark text-center"><a href="<%=request.getContextPath()%>/actorInfoList.jsp">actorInfoList(view)</a></li>
+			<li class="list-group-item list-group-item-dark text-center"><a href="<%=request.getContextPath()%>/customerListView.jsp">customerList(view)</a></li>
+			<li class="list-group-item list-group-item-dark text-center"><a href="<%=request.getContextPath()%>/filmListView.jsp">filmList(view)</a></li>
+			<li class="list-group-item list-group-item-dark text-center"><a href="<%=request.getContextPath()%>/nicerButSlowerFilmList.jsp">nicerButSlowerFilmList(view)</a></li>
+			<li class="list-group-item list-group-item-dark text-center"><a href="<%=request.getContextPath()%>/salesByFilmCategory.jsp">salesByFilmCategory(view)</a></li>
+			<li class="list-group-item list-group-item-dark text-center"><a href="<%=request.getContextPath()%>/salesByStore.jsp">salesByStore(view)</a></li>
+			<li class="list-group-item list-group-item-dark text-center"><a href="<%=request.getContextPath()%>/staffListView.jsp">staffList(view)</a></li>
 		</ol>
 	</div>
 </body>

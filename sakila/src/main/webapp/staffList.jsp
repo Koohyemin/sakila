@@ -17,7 +17,7 @@
 	<a href="<%=request.getContextPath()%>/index.jsp" class="btn btn-link">index</a>
 	<div class="container-fluid">
 	<table class="table table-dark">
-		<thead>
+		<tr class="text-info">
 			<th>staffName</th>
 			<th>addressId</th>
 			<th>staffAddr</th>
@@ -27,13 +27,12 @@
 			<th>username</th>
 			<th>password</th>
 			<th>lastUpdate</th>
-		</thead>
-		<tbody>
+		</tr>
 				<%
-					for(Map m : list) {
+					for(Map<String, Object> m : list) {
 				%>
 						<tr>
-							<td class="text-info"><%=m.get("staffName")%></td>
+							<td><%=m.get("staffName")%></td>
 							<td><%=m.get("addressId")%></td>
 							<td><%=m.get("staffAddr")%></td>
 							<td><%=m.get("email")%></td>
@@ -46,7 +45,6 @@
 				<%
 					}
 				%>
-		</tbody>
 	</table>
 	</div>
 </body>
