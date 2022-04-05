@@ -42,10 +42,6 @@
 						<th class="text-info text-center">인벤토리 번호</th>
 						<td><%=id %></td>
 					</tr>
-					<tr>
-						<th class="text-center">지점 번호</th>	
-						<td><%=storeId%></td>
-					</tr>
 			<%
 				}
 				if(count > 0) {

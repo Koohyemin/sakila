@@ -26,11 +26,11 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 </head>
 <body>
-	<h1 class="text-center text-info">rewards Report(프로시저)</h1>
-	<div class="container">
+	<h1 class="text-center text-info">rewards report(프로시저)</h1>
+	<div class="container-fluid">
 		<div class="text-center text-success">
-			최소 구매 횟수 : <%=minPurchase%> / 
-			최소 구매 금액 : <%=minDollar %>
+			최소 구매  [ <%=minPurchase%> ] 회 이상, 
+			최소 구매 금액 [ <%=minDollar %> ] 이상 고객 목록
 		</div>
 		<div>
 			<a href="<%=request.getContextPath()%>/index.jsp" class="btn btn-link">index</a>
