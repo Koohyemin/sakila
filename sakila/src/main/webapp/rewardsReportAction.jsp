@@ -9,8 +9,8 @@
 		minPurchase = Integer.parseInt(request.getParameter("minPurchase")); // 입력받은 minPurchase값 대입
 		minDollar = Double.parseDouble(request.getParameter("minDollar")); // 입력받은 minDollar값 대입
 	}
-	System.out.println("minPurchase : " + minPurchase);
-	System.out.println("minDollar : " + minDollar);
+	System.out.println("rewards_report_minPurchase : " + minPurchase);
+	System.out.println("rewards_report_minDollar : " + minDollar);
 	
 	
 	// 조건에 해당하는 고객 목록 호출
