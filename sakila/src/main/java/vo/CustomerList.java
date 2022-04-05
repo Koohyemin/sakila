@@ -12,8 +12,8 @@ public class CustomerList {
 	
 	@Override
 	public String toString() {
-		return "CustomerList [id=" + id + ", name=" + name + ", address=" + address + ", zipCode=" + zipCode
-				+ ", phone=" + phone + ", city=" + city + ", country=" + country + ", notes=" + notes + ", sid=" + sid
+		return "CustomerList [id=" + this.id + ", name=" + this.name + ", address=" + this.address + ", zipCode=" + this.zipCode
+				+ ", phone=" + this.phone + ", city=" + this.city + ", country=" + this.country + ", notes=" + this.notes + ", sid=" + this.sid
 				+ "]";
 	}
 

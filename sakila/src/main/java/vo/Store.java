@@ -5,6 +5,12 @@ public class Store {
 	private int addressId;
 	private String lastUpdate;
 	
+	@Override
+	public String toString() {
+		return "Store [storeId=" + this.storeId + ", managerStaffId=" + this.managerStaffId + ", addressId=" + this.addressId
+				+ ", lastUpdate=" + this.lastUpdate + "]";
+	}
+	
 	public int getStoreId() {
 		return storeId;
 	}

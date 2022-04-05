@@ -14,9 +14,9 @@ public class Staff {
 	
 	@Override
 	public String toString() {
-		return "Staff [staffId=" + staffId + ", firstName=" + firstName + ", lastName=" + lastName + ", addressId="
-				+ addressId + ", picture=" + picture + ", email=" + email + ", storeId=" + storeId + ", active="
-				+ active + ", userName=" + userName + ", password=" + password + ", lastUpdate=" + lastUpdate + "]";
+		return "Staff [staffId=" + this.staffId + ", firstName=" + this.firstName + ", lastName=" + this.lastName + ", addressId="
+				+ this.addressId + ", picture=" + this.picture + ", email=" + this.email + ", storeId=" + this.storeId + ", active="
+				+ this.active + ", userName=" + this.userName + ", password=" + this.password + ", lastUpdate=" + this.lastUpdate + "]";
 	}
 	
 	public int getStaffId() {

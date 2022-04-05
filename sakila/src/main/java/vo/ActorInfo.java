@@ -8,8 +8,8 @@ public class ActorInfo {
 	
 	@Override
 	public String toString() {
-		return "ActorInfo [actorId=" + actorId + ", firtstName=" + firstName + ", lastName=" + lastName + ", filmInfo="
-				+ filmInfo + "]";
+		return "ActorInfo [actorId=" + this.actorId + ", firtstName=" + this.firstName + ", lastName=" + this.lastName + ", filmInfo="
+				+ this.filmInfo + "]";
 	}
 	
 	public int getActorId() {

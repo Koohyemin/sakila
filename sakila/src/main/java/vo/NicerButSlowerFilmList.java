@@ -11,8 +11,8 @@ public class NicerButSlowerFilmList {
 	
 	@Override
 	public String toString() {
-		return "FilmList [fid=" + fid + ", title=" + title + ", description=" + description + ", category=" + category
-				+ ", price=" + price + ", length=" + length + ", rating=" + rating + ", actors=" + actors + "]";
+		return "FilmList [fid=" + this.fid + ", title=" + this.title + ", description=" + this.description + ", category=" + this.category
+				+ ", price=" + this.price + ", length=" + this.length + ", rating=" + this.rating + ", actors=" + this.actors + "]";
 	}
 
 	public int getFid() {
