@@ -6,7 +6,7 @@ public class SalesByStore {
 	
 	@Override
 	public String toString() {
-		return "SalesByStore [store=" + this.store + ", manager=" + this.manager + ", totalSales=" + this.totalSales + "]";
+		return "SalesByStore [store=" + store + ", manager=" + manager + ", totalSales=" + totalSales + "]";
 	}
 
 	public String getStore() {

@@ -11,8 +11,8 @@ public class StaffList {
 	
 	@Override
 	public String toString() {
-		return "StaffList [id=" + this.id + ", name=" + this.name + ", address=" + this.address + ", zipCode=" + this.zipCode + ", phone="
-				+ this.phone + ", city=" + this.city + ", country=" + this.country + ", sid=" + this.sid + "]";
+		return "StaffList [id=" + id + ", name=" + name + ", address=" + address + ", zipCode=" + zipCode + ", phone="
+				+ phone + ", city=" + city + ", country=" + country + ", sid=" + sid + "]";
 	}
 
 	public int getId() {

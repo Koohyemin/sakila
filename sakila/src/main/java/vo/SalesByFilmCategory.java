@@ -5,7 +5,7 @@ public class SalesByFilmCategory {
 	
 	@Override
 	public String toString() {
-		return "SalesByFilmCategory [category=" + this.category + ", totalSales=" + this.totalSales + "]";
+		return "SalesByFilmCategory [category=" + category + ", totalSales=" + totalSales + "]";
 	}
 
 	public String getCategory() {

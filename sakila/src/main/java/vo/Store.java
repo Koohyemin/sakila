@@ -7,8 +7,8 @@ public class Store {
 	
 	@Override
 	public String toString() {
-		return "Store [storeId=" + this.storeId + ", managerStaffId=" + this.managerStaffId + ", addressId=" + this.addressId
-				+ ", lastUpdate=" + this.lastUpdate + "]";
+		return "Store [storeId=" + storeId + ", managerStaffId=" + managerStaffId + ", addressId=" + addressId
+				+ ", lastUpdate=" + lastUpdate + "]";
 	}
 	
 	public int getStoreId() {
