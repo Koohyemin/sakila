@@ -4,21 +4,32 @@
 <%@ page import = "java.util.*" %>
 <%@ page import = "java.time.*" %>
 <%
-	int storeId = -1; // storeId데이터가 입력되지 않았을때 default값을 -1로 지정
-	if(!request.getParameter("storeId").equals("")) { // 매장을 선택했다면 선택한 매장값 받아서 int로 형변환
+	// storeId데이터가 입력되지 않았을때 default값을 -1로 지정
+	int storeId = -1; 
+	// storeId을 선택했다면 선택한 매장값 받아서 int로 형변환
+	if(!request.getParameter("storeId").equals("")) { 
 		storeId = Integer.parseInt(request.getParameter("storeId"));	
 	}
+	
 	String customerName = request.getParameter("customerName");
-	String beginDate = "2005-05-01"; // rental_date 처음 발생일이 "2005-05-24"이므로 디폴트 값 "2005-05-01"로 설정
-	if(!request.getParameter("beginDate").equals("")) { // beginDate값이 비어있지 않다면
-		beginDate = request.getParameter("beginDate"); // 입력받은 값 대입
+	
+	// rental_date 처음 발생일이 "2005-05-24"이므로 디폴트 값 "2005-05-01"로 설정
+	String beginDate = "2005-05-01"; 
+	// beginDate값을 입력했다면 입력받은 값 대입
+	if(!request.getParameter("beginDate").equals("")) { 
+		beginDate = request.getParameter("beginDate");
 	}
+	
 	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd"); // 현재 날짜 yyyy-MM-dd 형식으로 불러오기
 	Date now = new Date();
-	String endDate = format.format(now); // 디폴트 값을 현재 날짜로 설정 
-	if(!request.getParameter("endDate").equals("")) { // endDate값이 비어있지 않다면
-		endDate = request.getParameter("endDate");	// 입력받은 값 대입
+	// endDate데이터가 입력되지 않았을 때 디폴트 값을 현재 날짜로 설정 
+	String endDate = format.format(now); 
+	// endDate값을 입력했다면 입력받은 값 대입
+	if(!request.getParameter("endDate").equals("")) { 
+		endDate = request.getParameter("endDate");
 	}
+	
+	// 디버깅
 	System.out.println("[rentalSearchAction.jsp parameter 값]");
 	System.out.println("storeId : " + storeId);
 	System.out.println("customerName : " + customerName);
@@ -27,7 +38,9 @@
 	
 	// 페이징
 	int currentPage = 1; // 현재 페이지
-	if(request.getParameter("currentPage") != null) { // 이전, 다음 버튼을 통해 들어왔다면 currentPage에 값 대입
+	
+	// 이전, 다음 버튼을 통해 들어왔다면 currentPage에 값 대입
+	if(request.getParameter("currentPage") != null) { 
 		currentPage = Integer.parseInt(request.getParameter("currentPage"));
 	}
 	int rowPerPage = 10; // 한 페이지당 10개의 목록
