@@ -62,7 +62,7 @@
 	<%	
 	} else if(totalCount == 0) { // 데이터가 존재하지 않는다면 데이터가 없다는 안내메세지 출력
 	%>
-		<h3 class="text-danger text-center">해당 조건에 해당하는 영화가 존재하지 않습니다.</h3>
+		<h3 class="text-danger text-center">조건에 해당하는 영화가 존재하지 않습니다.</h3>
 	<%
 	}
 	%>
