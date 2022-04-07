@@ -1,15 +1,24 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import = "dao.*" %>
 <%@ page import = "java.util.*" %>
+<%@ page import = "java.time.*" %>
 <%
 	int storeId = -1; // storeId데이터가 입력되지 않았을때 default값을 -1로 지정
 	if(!request.getParameter("storeId").equals("")) { // 매장을 선택했다면 선택한 매장값 받아서 int로 형변환
 		storeId = Integer.parseInt(request.getParameter("storeId"));	
 	}
 	String customerName = request.getParameter("customerName");
-	String beginDate = request.getParameter("beginDate");
-	String endDate = request.getParameter("endDate");
-	
+	String beginDate = "2005-05-01"; // rental_date 처음 발생일이 "2005-05-24"이므로 디폴트 값 "2005-05-01"로 설정
+	if(!request.getParameter("beginDate").equals("")) { // beginDate값이 비어있지 않다면
+		beginDate = request.getParameter("beginDate"); // 입력받은 값 대입
+	}
+	SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd"); // 현재 날짜 yyyy-MM-dd 형식으로 불러오기
+	Date now = new Date();
+	String endDate = format.format(now); // 디폴트 값을 현재 날짜로 설정 
+	if(!request.getParameter("endDate").equals("")) { // endDate값이 비어있지 않다면
+		endDate = request.getParameter("endDate");	// 입력받은 값 대입
+	}
 	System.out.println("[rentalSearchAction.jsp parameter 값]");
 	System.out.println("storeId : " + storeId);
 	System.out.println("customerName : " + customerName);

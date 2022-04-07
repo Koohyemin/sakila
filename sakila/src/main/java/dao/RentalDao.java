@@ -32,13 +32,15 @@ public class RentalDao {
 				stmt = conn.prepareStatement(sql);
 				stmt.setString(1, "%" + customerName + "%");
 				stmt.setInt(2, storeId);
-			} else if(storeId == -1 && !beginDate.equals("") && !endDate.equals("")) { // date만 입력된 경우
+			} else if(storeId == -1 && !beginDate.equals("") && !endDate.equals("") || storeId == -1 && !beginDate.equals("") && endDate.equals("") || storeId == -1 && beginDate.equals("") && !endDate.equals("")) { 
+				// date만 입력된 경우, beginDate만 입력된 경우, endDate만 입력된 경우
 				sql += " AND r.rental_date BETWEEN STR_TO_DATE(?, '%Y-%m-%d') AND STR_TO_DATE(?, '%Y-%m-%d')";
 				stmt = conn.prepareStatement(sql);
 				stmt.setString(1, "%" + customerName + "%");
 				stmt.setString(2, beginDate);
 				stmt.setString(3, endDate);
-			} else if(storeId != -1 && !beginDate.equals("") && !endDate.equals("")) { // storeId, beginDate, endDate가 모두 입력 된 경우
+			} else if(storeId != -1 && !beginDate.equals("") && !endDate.equals("") || storeId != -1 && !beginDate.equals("") && endDate.equals("") || storeId != -1 && beginDate.equals("") && !endDate.equals("")) {
+				// storeId, beginDate, endDate가 모두 입력 된 경우, beginDate, endDate 둘 중 하나만 들어있는 경우도 해당
 				sql += " AND s.store_id = ? AND r.rental_date BETWEEN STR_TO_DATE(?, '%Y-%m-%d') AND STR_TO_DATE(?, '%Y-%m-%d')";
 				stmt = conn.prepareStatement(sql);
 				stmt.setString(1, "%" + customerName + "%");

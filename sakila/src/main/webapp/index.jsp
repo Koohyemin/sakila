@@ -35,6 +35,7 @@
 				<li class="list-group-item list-group-item-dark text-center"><a href="<%=request.getContextPath()%>/filmSearchForm.jsp" class="text-dark">필름 상세검색</a></li>
 				<li class="list-group-item list-group-item-dark text-center"><a href="<%=request.getContextPath()%>/rentalSearchForm.jsp" class="text-dark">대여 상세검색</a></li>
 			</ol>
+		<h3 class="text-center text-info">통계 데이터</h3>
 	</div>
 </body>
 </html>
