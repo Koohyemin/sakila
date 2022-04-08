@@ -67,10 +67,11 @@
 <body>
 	<div class="container-fluid">
 	<div class="row">
+	<!-- 통계데이터 바로가기 리스트 -->
 	<div class="col-sm-3">
 	</div>
 	<div class="col-sm-3 position-fixed">
-		<h2 class="text-center text-info">바로가기</h2>
+		<h2 class="text-center text-info">통계 데이터 바로가기</h2>
 		<ul class="list-group text-center">
 			<li class="list-group-item"><a href="#1" class="text-dark">1. 고객 별 매출(TOP10)</a></li>
 			<li class="list-group-item"><a href="#2" class="text-dark">2. 대여료 별 영화 개수</a></li>
@@ -92,7 +93,9 @@
 			<li class="list-group-item"><a href="#18" class="text-dark">18. 매장 요일 별 매출액</a></li>
 		</ul>
 	</div>
+	<!-- 통계 데이터 테이블 -->
 	<div class="col-sm-9">
+		<a href="<%=request.getContextPath()%>/index.jsp" class="btn btn-outline-secondary">index</a>
 		<a name="1"></a>
 		<h1 class="text-center text-info">1. 고객 별 매출(TOP10)</h1>
 		<table class="table table-dark table-striped" name="A">
