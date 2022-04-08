@@ -36,6 +36,9 @@
 				<li class="list-group-item list-group-item-dark text-center"><a href="<%=request.getContextPath()%>/rentalSearchForm.jsp" class="text-dark">대여 상세검색</a></li>
 			</ol>
 		<h3 class="text-center text-info">통계 데이터</h3>
+			<ol class="list-group">
+				<li class="list-group-item list-group-item-dark text-center"><a href="<%=request.getContextPath()%>/statsData.jsp" class="text-dark">통계 데이터</a></li>
+			</ol>
 	</div>
 </body>
 </html>
