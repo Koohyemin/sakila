@@ -54,7 +54,9 @@
 	
 	// 17. active가 0인 customer별 총amount
 	List<Map<String, Object>> amountByZeroActiveCustomer = statsDataDao.amountByZeroActiveCustomer();
-	// 18. store별 요일별 매출
+	// 18. store 월별 매출
+	List<Map<String, Object>> monthByStore = statsDataDao.monthByStore();
+	// 19. store 요일별 매출
 	List<Map<String, Object>> dayOfWeekByStore = statsDataDao.dayOfWeekByStore();
 %>
 <!DOCTYPE html>
@@ -70,8 +72,9 @@
 	<!-- 통계데이터 바로가기 리스트 -->
 	<div class="col-sm-3">
 	</div>
-	<div class="col-sm-3 position-fixed">
-		<h2 class="text-center text-info">통계 데이터 바로가기</h2>
+	<div class="col-sm-3 position-fixed" style="overflow-y:scroll; overflow-x:hidden; width:600px; height:800px;">
+		<br>
+		<h4 class="text-center text-info">통계 데이터 바로가기</h4>
 		<ul class="list-group text-center">
 			<li class="list-group-item"><a href="#1" class="text-dark">1. 고객 별 매출(TOP10)</a></li>
 			<li class="list-group-item"><a href="#2" class="text-dark">2. 대여료 별 영화 개수</a></li>
@@ -90,12 +93,15 @@
 			<li class="list-group-item"><a href="#15" class="text-dark">15. 국가 별 고객 수(TOP10)</a></li>
 			<li class="list-group-item"><a href="#16" class="text-dark">16. 장르 별 영화길이 평균</a></li>
 			<li class="list-group-item"><a href="#17" class="text-dark">17. 비활성화 고객의 이용금액 총 합계(TOP10)</a></li>
-			<li class="list-group-item"><a href="#18" class="text-dark">18. 매장 요일 별 매출액</a></li>
+			<li class="list-group-item"><a href="#17" class="text-dark">18. 매장 월별 매출</a></li>
+			<li class="list-group-item"><a href="#18" class="text-dark">19. 매장 요일 별 매출액</a></li>
 		</ul>
 	</div>
 	<!-- 통계 데이터 테이블 -->
 	<div class="col-sm-9">
-		<a href="<%=request.getContextPath()%>/index.jsp" class="btn btn-outline-secondary">index</a>
+		<br><h1 class="text-center">통계데이터 리스트</h1> <br>
+		<!-- index 바로가기 -->
+		<a href="<%=request.getContextPath()%>/index.jsp" class="btn btn-link">index</a> 
 		<a name="1"></a>
 		<h1 class="text-center text-info">1. 고객 별 매출(TOP10)</h1>
 		<table class="table table-dark table-striped" name="A">
@@ -351,7 +357,7 @@
 			%>
 		</table>
 		<a name="14"></a>
-		<h1 class="text-center text-info">14. actor 별 총 매출(TOP10)</h1>
+		<h1 class="text-center text-info">14. 배우 별 총 매출(TOP10)</h1>
 		<table class="table table-dark table-striped">
 			<tr class="text-center text-info">
 				<th>배우 번호</th>
@@ -431,7 +437,27 @@
 			%>
 		</table>
 		<a name="18"></a>
-		<h1 class="text-center text-info">18. 매장 요일 별 매출액</h1>
+		<h1 class="text-center text-info">18. 매장 월별 매출</h1>
+		<table class="table table-dark table-striped">
+			<tr class="text-center text-info">
+				<th>매장 번호</th>
+				<th>연도-월</th>
+				<th>매출액</th>
+			</tr>
+			<%
+				for(Map<String, Object> m : monthByStore) {
+			%>
+					<tr class="text-center">
+						<td><%=m.get("storeId")%></td>
+						<td><%=m.get("yearMonth")%></td>
+						<td><%=m.get("amount")%></td>
+					</tr>
+			<%
+				}
+			%>
+		</table>
+		<a name="19"></a>
+		<h1 class="text-center text-info">19. 매장 요일 별 매출액</h1>
 		<table class="table table-dark table-striped">
 			<tr class="text-center text-info">
 				<th>매장 번호</th>

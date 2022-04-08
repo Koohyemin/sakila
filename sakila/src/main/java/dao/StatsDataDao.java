@@ -617,6 +617,42 @@ public class StatsDataDao {
 		}
 		return list;
 	}
+	public List<Map<String, Object>> monthByStore() {
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		conn = DBUtil.getConnection();
+		String sql = "SELECT s.store_id storeId, CONCAT(YEAR(p.payment_date),'-',MONTH(p.payment_date))yearMonth ,SUM(amount) amount"
+				+ " FROM payment p"
+				+ " INNER JOIN staff s ON p.staff_id=s.staff_id"
+				+ " GROUP BY store_id, yearMonth"
+				+ " ORDER BY store_id";
+		try {
+			stmt = conn.prepareStatement(sql);
+			rs = stmt.executeQuery();
+			while(rs.next()) {
+				Map<String, Object> m = new HashMap<String, Object>();
+				m.put("storeId", rs.getInt("storeId"));
+				m.put("yearMonth", rs.getString("yearMonth"));
+				m.put("amount", rs.getDouble("amount"));
+				list.add(m);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			// DB자원 해지
+			try {
+				rs.close();
+				stmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
+	
 	public List<Map<String, Object>> dayOfWeekByStore() {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		Connection conn = null;
