@@ -39,26 +39,28 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 </head>
 <body>
-	<h1 class="text-center text-info">필름 리스트 뷰 검색 결과</h1>
+	<h1 class="text-center text-info">영화 상세검색 결과</h1>
 	<div class="container-fluid">
 	<div>
 		<a href="<%=request.getContextPath()%>/index.jsp" class="btn btn-link">index</a>
 		<a href="<%=request.getContextPath()%>/filmSearchForm.jsp">재검색</a>
 	</div>
-	<table class="table table-dark">
+	<table class="table">
 	<% if(totalCount > 0) { // 데이터가 1개이상 존재한다면 테이블 및 개수 출력
 	%>
-			<div class="text-success">조건에 해당하는 총 [ <%=totalCount %> ]개의 영화가 존재합니다</div>
-			<tr class="text-info">
-				<th>ID</th>
-				<th>제목</th>
-				<th>설명</th>
-				<th>장르</th>
-				<th>금액</th>
-				<th>타임</th>
-				<th>등급</th>
-				<th>출연배우</th>
-			</tr>
+			<div class="text-success text-center">조건에 해당하는 총 [ <%=totalCount %> ]개의 영화가 존재합니다</div>
+			<thead class="thead-dark text-center">
+				<tr>
+					<th>No</th>
+					<th>제목</th>
+					<th>줄거리</th>
+					<th>장르</th>
+					<th>$</th>
+					<th>분</th>
+					<th>등급</th>
+					<th>출연 배우</th>
+				</tr>
+			</thead>
 	<%	
 	} else if(totalCount == 0) { // 데이터가 존재하지 않는다면 데이터가 없다는 안내메세지 출력
 	%>
@@ -69,16 +71,18 @@
 		<%
 			for(FilmList f : list) {
 		%>
-				<tr>
-					<td><%=f.getFid()%></td>
-					<td><%=f.getTitle()%></td>
-					<td><%=f.getDescription()%></td>
-					<td><%=f.getCategory()%></td>
-					<td><%=f.getPrice()%></td>
-					<td><%=f.getLength()%></td>
-					<td><%=f.getRating()%></td>
-					<td><%=f.getActors()%></td>
-				</tr>
+				<tbody class="text-center">
+					<tr>
+						<td><%=f.getFid()%></td>
+						<td><%=f.getTitle()%></td>
+						<td><%=f.getDescription()%></td>
+						<td><%=f.getCategory()%></td>
+						<td><%=f.getPrice()%></td>
+						<td><%=f.getLength()%></td>
+						<td><%=f.getRating()%></td>
+						<td><%=f.getActors()%></td>
+					</tr>
+				</tbody>
 		<%
 			}
 		%>

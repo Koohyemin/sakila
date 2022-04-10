@@ -188,22 +188,29 @@ public class StatsDataDao {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		conn = DBUtil.getConnection();
-		String sql = "SELECT t.length2 length, COUNT(*) cnt"
-				+ " FROM(SELECT title, LENGTH,"
-				+ "			CASE WHEN LENGTH<=60 THEN 'less60'"
-				+ "				  WHEN LENGTH BETWEEN 61 AND 120 THEN 'between61and120'"
-				+ "				  WHEN LENGTH BETWEEN 121 AND 180 THEN 'between121and180'"
-				+ "				  ELSE 'more180'"
-				+ "			END LENGTH2"
-				+ "		FROM film) t"
-				+ " GROUP BY t.length2";
+		String sql = "SELECT tt.filmLength filmLength, tt.cnt cnt"
+				+ " FROM (SELECT t.filmLength, COUNT(*) cnt,"
+				+ "				  (CASE WHEN t.filmLength='less60' THEN '1'"
+				+ "				 	     WHEN t.filmLength='between61and120' THEN '2'"
+				+ "				  		 WHEN t.filmLength='between121and180' THEN '3'"
+				+ "				 	     ELSE '4'"
+				+ "				   END) lengthOrder"
+				+ "		FROM (SELECT title, LENGTH,"
+				+ "					(CASE WHEN LENGTH<=60 THEN 'less60'"
+				+ "				     	   WHEN LENGTH BETWEEN 61 AND 120 THEN 'between61and120'"
+				+ "				      	WHEN LENGTH BETWEEN 121 AND 180 THEN 'between121and180'"
+				+ "				      	ELSE 'more180'"
+				+ "				 	 END) filmLength"
+				+ "			   FROM film) t"
+				+ "		GROUP BY t.filmLength"
+				+ "		ORDER BY lengthOrder ) tt";
 		try {
 			stmt = conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
 			while(rs.next()) {
 				Map<String, Object> m = new HashMap<String, Object>();
-				m.put("length", rs.getString("length"));
-				m.put("cnt", rs.getString("cnt"));
+				m.put("filmLength", rs.getString("filmLength"));
+				m.put("cnt", rs.getInt("cnt"));
 				list.add(m);
 			}
 		} catch (SQLException e) {
@@ -681,6 +688,40 @@ public class StatsDataDao {
 				Map<String, Object> m = new HashMap<String, Object>();
 				m.put("storeId", rs.getInt("storeId"));
 				m.put("dayOfWeek", rs.getString("dayOfWeek"));
+				m.put("amount", rs.getDouble("amount"));
+				list.add(m);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			// DB자원 해지
+			try {
+				rs.close();
+				stmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
+	
+	public List<Map<String, Object>> timeAmountByStore() {
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		conn = DBUtil.getConnection();
+		String sql = "SELECT IF(HOUR(p.payment_date)=0,24,HOUR(p.payment_date)) paymentHour, SUM(amount) amount"
+				+ " FROM payment p"
+				+ " GROUP BY HOUR(p.payment_date)"
+				+ " ORDER BY paymentHour";
+		try {
+			stmt = conn.prepareStatement(sql);
+			rs = stmt.executeQuery();
+			while(rs.next()) {
+				Map<String, Object> m = new HashMap<String, Object>();
+				m.put("paymentHour", rs.getInt("paymentHour"));
 				m.put("amount", rs.getDouble("amount"));
 				list.add(m);
 			}

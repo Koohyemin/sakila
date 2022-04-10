@@ -14,11 +14,11 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 </head>
 <body>
-	<h1 class="text-center text-info">렌탈 리스트 검색</h1>
+	<h1 class="text-center text-info">대여 정보 상세검색</h1>
 	<div class="container">
 	<form method="post" action="<%=request.getContextPath()%>/rentalSearchAction.jsp">
 	<a href="<%=request.getContextPath()%>/index.jsp" class="btn btn-link">index</a>
-		<table class="table table-dark table-striped">
+		<table class="table table-striped">
 		<!-- 스토어ID 검색 -->
 			<tr>
 				<th class="text-info">지점 번호</th>

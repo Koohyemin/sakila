@@ -28,26 +28,30 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 </head>
 <body>
-	<h1 class="text-center text-info">Actor Info List(view)</h1>
+	<h1 class="text-center text-info">배우별 출연 영화 목록</h1>
 	<a href="<%=request.getContextPath()%>/index.jsp" class="btn btn-link">index</a>
 	<div class="container-fluid">
 		<!-- actor_info 리스트 -->
-		<table class="table table-dark">
-			<tr class="text-info">
-				<th>actorId</th>
-				<th>firstName</th>
-				<th>lastName</th>
-				<th>filmInfo</th>
-			</tr>
+		<table class="table">
+			<thead class="thead-dark text-center">
+				<tr>
+					<th>No</th>
+					<th>이름</th>
+					<th>성</th>
+					<th>출연 정보</th>
+				</tr>
+			</thead>
 		<%
 			for(ActorInfo a : list) {
 		%>
+			<tbody class="text-center">
 				<tr>
 					<td><%=a.getActorId()%></td>
 					<td><%=a.getFirstName()%></td>
 					<td><%=a.getLastName()%></td>
 					<td><%=a.getFilmInfo()%></td>
 				</tr>
+			</tbody>
 		<%
 			}
 		%>

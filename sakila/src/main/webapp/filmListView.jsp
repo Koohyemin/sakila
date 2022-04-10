@@ -27,34 +27,38 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 </head>
 <body>
-	<h1 class="text-center text-info">Film List(view)</h1>
+	<h1 class="text-center text-info">영화 목록</h1>
 	<a href="<%=request.getContextPath()%>/index.jsp" class="btn btn-link">index</a>
 	<div class="container-fluid">
 	<!-- filmList 뷰 리스트 -->
-		<table class="table table-dark">
-			<tr class="text-info">
-				<th>fid</th>
-				<th>title</th>
-				<th>description</th>
-				<th>category</th>
-				<th>price</th>
-				<th>length</th>
-				<th>rating</th>
-				<th>actors</th>
-			</tr>
+		<table class="table">
+			<thead class="thead-dark text-center">
+				<tr class="text-info">
+					<th>No</th>
+					<th>제목</th>
+					<th>줄거리</th>
+					<th>장르</th>
+					<th>$</th>
+					<th>분</th>
+					<th>등급</th>
+					<th>출연 배우</th>
+				</tr>
+			</thead>
 			<%
 				for(FilmList f : list) {
 			%>
-					<tr>
-						<td><%=f.getFid()%></td>
-						<td><%=f.getTitle()%></td>
-						<td><%=f.getDescription()%></td>
-						<td><%=f.getCategory()%></td>
-						<td><%=f.getPrice()%></td>
-						<td><%=f.getLength()%></td>
-						<td><%=f.getRating()%></td>
-						<td><%=f.getActors()%></td>
-					</tr>
+					<tbody class="text-center">
+						<tr>
+							<td><%=f.getFid()%></td>
+							<td><%=f.getTitle()%></td>
+							<td><%=f.getDescription()%></td>
+							<td><%=f.getCategory()%></td>
+							<td><%=f.getPrice()%></td>
+							<td><%=f.getLength()%></td>
+							<td><%=f.getRating()%></td>
+							<td><%=f.getActors()%></td>
+						</tr>
+					</tbody>
 			<%
 				}
 			%>

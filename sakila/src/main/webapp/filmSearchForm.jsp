@@ -18,11 +18,11 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 </head>
 <body>
-	<h1 class="text-center text-info">필름 리스트 뷰 검색</h1>
+	<h1 class="text-center text-info">영화 상세검색</h1>
 	<div class="container">
 	<a href="<%=request.getContextPath()%>/index.jsp" class="btn btn-link">index</a>
 	<form action="<%=request.getContextPath()%>/filmSearchAction.jsp" method="post">
-		<table class="table table-dark table-striped">
+		<table class="table table-striped">
 			<tr>
 				<!-- category 테이블에서 select -->
 				<th class="text-info">카테고리</th>

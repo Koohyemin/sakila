@@ -25,7 +25,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 </head>
 <body>
-	<h1 class="text-center text-info">film in stock(프로시저)</h1>
+	<h1 class="text-center text-info">영화 재고 결과</h1>
 	<div class="container">
 		<div class="text-center text-success">
 			영화 번호 : <%=filmId%> / 
@@ -36,22 +36,26 @@
 			<a href="<%=request.getContextPath()%>/filmInStock.jsp">재검색</a>
 		</div>
 		<!-- film_in_stock 리스트 -->
-		<table class="table table-dark">
+		<table class="table">
 		<%
 			if(count > 0) {
 		%>
-				<tr class="text-center">
-					<th colspan="2" class="text-info text-center">인벤토리 번호</th>
-				</tr>
+				<thead class="thead-dark text-center">
+					<tr class="text-center">
+						<th colspan="2" class="text-info text-center">인벤토리 번호</th>
+					</tr>
+				</thead>
 		<%
 			}
 		%>
 			<%
 				for(int id : list) {
 			%>
-					<tr>
-						<td colspan="2" class="text-center"><%=id %></td>
-					</tr>
+					<tbody class="text-center">
+						<tr>
+							<td colspan="2" class="text-center"><%=id %></td>
+						</tr>
+					</tbody>
 			<%
 				}
 				if(count > 0) {

@@ -14,21 +14,25 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 </head>
 <body>
-	<h1 class="text-center text-info">Sales By Film Category(view)</h1>
+	<h1 class="text-center text-info">장르별 총매출</h1>
+	<div class="container">
 	<a href="<%=request.getContextPath()%>/index.jsp" class="btn btn-link">index</a>
-	<div class="container-fluid">
-	<table class="table table-dark">
-		<tr class="text-info">
-			<th>category</th>
-			<th>totalSales</th>
-		</tr>
+	<table class="table">
+		<thead class="thead-dark text-center">
+			<tr class="text-info">
+				<th>장르</th>
+				<th>총 매출</th>
+			</tr>
+		</thead>
 		<%
 			for(SalesByFilmCategory s : list) {
 		%>
-				<tr>
-					<td><%=s.getCategory()%></td>
-					<td><%=s.getTotalSales()%></td>
-				</tr>
+				<tbody class="text-center">
+					<tr>
+						<td><%=s.getCategory()%></td>
+						<td><%=s.getTotalSales()%></td>
+					</tr>
+				</tbody>
 		<%
 			}
 		%>

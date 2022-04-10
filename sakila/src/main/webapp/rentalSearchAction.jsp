@@ -61,30 +61,32 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 </head>
 <body>
-	<h1 class="text-center text-info">렌탈 리스트 검색 결과</h1>
+	<h1 class="text-center text-info">대여 정보 상세검색 결과</h1>
 	<div class="container-fluid">
 	<div>
 		<a href="<%=request.getContextPath()%>/index.jsp" class="btn btn-link">index</a>
 		<a href="<%=request.getContextPath()%>/rentalSearchForm.jsp">재검색</a>
 	</div>
-	<table class="table table-dark">
+	<table class="table">
 	<%
-		if(totalCount > 0) { // 데이터가 1개이상 존재한다면 테이블 및 개수 출력
+		if(totalCount > 0) { // 데이터가 1개이상 존재한다면 테이블 출력
 	%>
-			<div class="text-success">조건에 해당하는 총 [ <%=totalCount %> ]개의 렌탈정보가 존재합니다</div>
-			<tr class="text-info">
-				<th>rentalId</th>
-				<th>rentalDate</th>
-				<th>inventoryId</th>
-				<th>filmId</th>
-				<th>title</th>
-				<th>customerId</th>
-				<th>customerName</th>
-				<th>returnDate</th>
-				<th>storeId</th>
-				<th>staffId</th>
-				<th>lastUpdate</th>
-			</tr>
+			<div class="text-success text-center">조건에 해당하는 총 [ <%=totalCount %> ]개의 대여정보가 존재합니다</div>
+			<thead class="thead-dark text-center">
+				<tr>
+					<th>대여 번호</th>
+					<th>대여일</th>
+					<th>재고 번호</th>
+					<th>영화 번호</th>
+					<th>제목</th>
+					<th>고객 번호</th>
+					<th>고객이름</th>
+					<th>반납일</th>
+					<th>매장</th>
+					<th>직원 번호</th>
+					<th>업데이트일</th>
+				</tr>
+			</thead>
 	<%
 		} else if (totalCount == 0) { // 데이터가 존재하지 않는다면 데이터가 없다는 안내메세지 출력
 	%>
@@ -95,23 +97,25 @@
 		<%
 			for(Map<String, Object> m : list) {
 		%>
-				<tr>
-					<td><%=m.get("rentalId")%></td>
-					<td><%=m.get("rentalDate")%></td>
-					<td><%=m.get("inventoryId")%></td>
-					<td><%=m.get("filmId")%></td>
-					<td><%=m.get("title")%></td>
-					<td><%=m.get("customerId")%></td>
-					<td><%=m.get("customerName")%></td>
-					<td><%=m.get("returnDate")%></td>
-					<td><%=m.get("storeId")%></td>
-					<td><%=m.get("staffId")%></td>
-					<td><%=m.get("lastUpdate")%></td>
-				</tr>
+				<tbody class="text-center">
+					<tr>
+						<td><%=m.get("rentalId")%></td>
+						<td><%=m.get("rentalDate")%></td>
+						<td><%=m.get("inventoryId")%></td>
+						<td><%=m.get("filmId")%></td>
+						<td><%=m.get("title")%></td>
+						<td><%=m.get("customerId")%></td>
+						<td><%=m.get("customerName")%></td>
+						<td><%=m.get("returnDate")%></td>
+						<td><%=m.get("storeId")%></td>
+						<td><%=m.get("staffId")%></td>
+						<td><%=m.get("lastUpdate")%></td>
+					</tr>
+				</tbody>
 		<%
 			}
 		%>
-	</table>
+		</table>
 	
 	<!-- 이전 / 다음 (페이지) -->
 	<%

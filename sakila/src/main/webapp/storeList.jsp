@@ -13,21 +13,21 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 </head>
 <body>
-	<h1 class="text-center text-info">Store List</h1>
+	<h1 class="text-center text-info">매장 목록</h1>
 	<a href="<%=request.getContextPath()%>/index.jsp" class="btn btn-link">index</a>
 	<div class="container-fluid">
-	<table class="table table-dark">
-		<thead>
-			<tr class="text-info">
-				<th>storeId</th>
-				<th>staffId</th>
-				<th>staffName</th>
-				<th>addressId</th>
-				<th>staffAddr</th>
-				<th>lastUpdate</th>
+	<table class="table">
+		<thead class="thead-dark text-center">
+			<tr>
+				<th>매장 번호</th>
+				<th>매니저 번호</th>
+				<th>이름</th>
+				<th>주소 번호</th>
+				<th>주소</th>
+				<th>업데이트일</th>
 			</tr>
 		</thead>
-		<tbody>
+		<tbody class="text-center">
 				<%
 					for(Map<String, Object> m : list) {
 						

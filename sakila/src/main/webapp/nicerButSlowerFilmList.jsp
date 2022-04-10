@@ -27,34 +27,38 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 </head>
 <body>
-	<h1 class="text-center text-info">Nicer But Slower Film List(view)</h1>
+	<h1 class="text-center text-info">영화 목록(nicerButSlower)</h1>
 	<a href="<%=request.getContextPath()%>/index.jsp" class="btn btn-link">index</a>
 	<div class="container-fluid">
 	<!-- nicerButSlowerFilmList 뷰 리스트 -->
-		<table class="table table-dark">
-			<tr class="text-info">
-				<th>fid</th>
-				<th>title</th>
-				<th>description</th>
-				<th>category</th>
-				<th>price</th>
-				<th>length</th>
-				<th>rating</th>
-				<th>actors</th>
-			</tr>
+		<table class="table">
+			<thead class="thead-dark text-center">
+				<tr class="text-info">
+					<th>No</th>
+					<th>제목</th>
+					<th>줄거리</th>
+					<th>장르</th>
+					<th>$</th>
+					<th>분</th>
+					<th>등급</th>
+					<th>배우</th>
+				</tr>
+			</thead>
 			<%
 				for(NicerButSlowerFilmList n : list) {
 			%>
-					<tr>
-						<td><%=n.getFid()%></td>
-						<td><%=n.getTitle()%></td>
-						<td><%=n.getDescription()%></td>
-						<td><%=n.getCategory()%></td>
-						<td><%=n.getPrice()%></td>
-						<td><%=n.getLength()%></td>
-						<td><%=n.getRating()%></td>
-						<td><%=n.getActors()%></td>
-					</tr>
+					<tbody class="text-center">
+						<tr>
+							<td><%=n.getFid()%></td>
+							<td><%=n.getTitle()%></td>
+							<td><%=n.getDescription()%></td>
+							<td><%=n.getCategory()%></td>
+							<td><%=n.getPrice()%></td>
+							<td><%=n.getLength()%></td>
+							<td><%=n.getRating()%></td>
+							<td><%=n.getActors()%></td>
+						</tr>
+					</tbody>
 			<%
 				}
 			%>

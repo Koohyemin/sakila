@@ -26,7 +26,7 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 </head>
 <body>
-	<h1 class="text-center text-info">rewards report(프로시저)</h1>
+	<h1 class="text-center text-info">조건달성 고객 결과</h1>
 	<div class="container-fluid">
 		<div class="text-center text-success">
 			최소 구매  [ <%=minPurchase%> ] 회 이상, 
@@ -38,32 +38,36 @@
 		</div>
 		<div class="text-center bg-info text-light"><%=map.get("count") %>명</div>
 		<!-- rewardsReport 리스트 -->
-		<table class="table table-dark">
-		<tr class="text-info">
-			<th>customerId</th>
-			<th>storeId</th>
-			<th>firstName</th>
-			<th>lastName</th>
-			<th>email</th>
-			<th>addressId</th>
-			<th>active</th>
-			<th>createDate</th>
-			<th>lastUpdate</th>
-		</tr>
+		<table class="table">
+			<thead class="thead-dark text-center">
+				<tr class="text-info">
+					<th>고객 번호</th>
+					<th>매장 번호</th>
+					<th>이름</th>
+					<th>성</th>
+					<th>이메일</th>
+					<th>주소 번호</th>
+					<th>활동 여부</th>
+					<th>가입일자</th>
+					<th>업데이트일</th>
+				</tr>
+			</thead>
 			<%
 				for(Map<String, Object> m : list) {
 			%>
-					<tr>
-						<td><%=m.get("customerId") %></td>
-						<td><%=m.get("storeId") %></td>
-						<td><%=m.get("firstName") %></td>
-						<td><%=m.get("lastName") %></td>
-						<td><%=m.get("email") %></td>
-						<td><%=m.get("addressId") %></td>
-						<td><%=m.get("active") %></td>
-						<td><%=m.get("createDate") %></td>
-						<td><%=m.get("lastUpdate") %></td>
-					</tr>
+					<tbody class="text-center">
+						<tr>
+							<td><%=m.get("customerId") %></td>
+							<td><%=m.get("storeId") %></td>
+							<td><%=m.get("firstName") %></td>
+							<td><%=m.get("lastName") %></td>
+							<td><%=m.get("email") %></td>
+							<td><%=m.get("addressId") %></td>
+							<td><%=m.get("active") %></td>
+							<td><%=m.get("createDate") %></td>
+							<td><%=m.get("lastUpdate") %></td>
+						</tr>
+					</tbody>
 			<%
 				}
 			%>
