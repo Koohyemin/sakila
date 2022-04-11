@@ -1,4 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@page import="java.net.URLDecoder"%>
+<%
+	// 유효성 판별
+	String msg = "";
+	if(request.getParameter("msg") != null) {
+		msg = request.getParameter(URLDecoder.decode("msg"));
+	}
+%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -10,6 +18,7 @@
 	<h1 class="text-center text-info">조건달성 고객 검색</h1>
 	<div class="container">
 		<a href="<%=request.getContextPath()%>/index.jsp" class="btn btn-link">index</a>
+		<div class="text-danger"><%=msg %></div>
 		<!-- min_monthly_purchases, min_dollar_amount_purchased 입력 -->
 		<form method="post" action="<%=request.getContextPath()%>/rewardsReportAction.jsp">
 			<table class="table">

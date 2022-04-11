@@ -1,14 +1,20 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import = "java.util.*" %>
 <%@ page import = "dao.RewardsReportDao" %>
+<%@page import="java.net.URLEncoder"%>
 <%
-	int minPurchase = 0;
-	double minDollar = 0;
-	
-	if(request.getParameter("minPurchase") != null && request.getParameter("minDollar") != null) { // 받은 값이 비어있지 않다면
-		minPurchase = Integer.parseInt(request.getParameter("minPurchase")); // 입력받은 minPurchase값 대입
-		minDollar = Double.parseDouble(request.getParameter("minDollar")); // 입력받은 minDollar값 대입
+	// 유효성 판별
+	if(request.getParameter("minPurchase").equals("")) {
+		response.sendRedirect(request.getContextPath()+"/rewardsReport.jsp?msg="+URLEncoder.encode("최소 구매 횟수를 입력해주세요"));
+		return;
+	} else if (request.getParameter("minDollar").equals("")) {
+		response.sendRedirect(request.getContextPath()+"/rewardsReport.jsp?msg="+URLEncoder.encode("최소 구매 금액을 입력해주세요"));
+		return;
 	}
+
+	int minPurchase = Integer.parseInt(request.getParameter("minPurchase")); // 입력받은 minPurchase값 대입
+	double minDollar = Double.parseDouble(request.getParameter("minDollar")); // 입력받은 minDollar값 대입
+
 	System.out.println("rewards_report_minPurchase : " + minPurchase);
 	System.out.println("rewards_report_minDollar : " + minDollar);
 	

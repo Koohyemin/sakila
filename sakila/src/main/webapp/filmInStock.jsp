@@ -1,10 +1,16 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="dao.*"%>
 <%@ page import="java.util.*"%>
+<%@page import="java.net.URLDecoder"%>
 <%
 	// 지점 번호 목록
 	StoreDao storeDao = new StoreDao();
 	List<Integer> storeList = storeDao.selectStoreIdList();
+	// 유효성 판별
+	String msg = "";
+	if(request.getParameter("msg") != null) {
+		msg = request.getParameter(URLDecoder.decode("msg"));
+	}
 %>
 <!DOCTYPE html>
 <html>
@@ -17,6 +23,7 @@
 	<h1 class="text-center text-info">영화 재고 검색</h1>
 	<div class="container">
 		<a href="<%=request.getContextPath()%>/index.jsp" class="btn btn-link">index</a>
+		<div class="text-danger"><%=msg %></div>
 		<!-- filmId, storeId 입력 -->
 		<form method="post" action="<%=request.getContextPath()%>/filmInStockAction.jsp">
 			<table class="table">

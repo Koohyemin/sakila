@@ -1,14 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import = "java.util.*" %>
 <%@ page import = "dao.FilmDao" %>
+<%@page import="java.net.URLEncoder"%>
 <%
-	int filmId = 0;
-	int storeId = 0;
-	
-	if(request.getParameter("filmId") != null && request.getParameter("storeId") != null) {
-		filmId = Integer.parseInt(request.getParameter("filmId")); // 입력받은 filmId값 대입
-		storeId = Integer.parseInt(request.getParameter("storeId")); // 입력받은 storeId값 대입
+	// 유효성 판별
+	if(request.getParameter("filmId").equals("")) {
+		response.sendRedirect(request.getContextPath()+"/filmNotInStock.jsp?msg="+URLEncoder.encode("영화번호를 입력해주세요"));
+		return;
+	} else if (request.getParameter("storeId")==null) {
+		response.sendRedirect(request.getContextPath()+"/filmNotInStock.jsp?msg="+URLEncoder.encode("지점을 선택해주세요"));
+		return;
 	}
+
+	int filmId = Integer.parseInt(request.getParameter("filmId")); // 입력받은 filmId값 대입
+	int storeId = Integer.parseInt(request.getParameter("storeId")); // 입력받은 storeId값 대입
 	System.out.println("film_not_in_stock_filmId : " + filmId);
 	System.out.println("film_not_in_stock_storeId : " + storeId);
 	
