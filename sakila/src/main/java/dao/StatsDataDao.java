@@ -54,7 +54,7 @@ public class StatsDataDao {
 		conn = DBUtil.getConnection();
 		String sql = "SELECT rental_rate rentalRate,COUNT(*) cnt FROM film"
 				+ " GROUP BY rental_rate"
-				+ " ORDER BY COUNT(*)";
+				+ " ORDER BY rental_rate";
 		try {
 			stmt = conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
@@ -85,10 +85,18 @@ public class StatsDataDao {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		conn = DBUtil.getConnection();
-		String sql = "SELECT rating, COUNT(*) cnt"
-				+ " FROM film"
-				+ " GROUP BY rating"
-				+ " ORDER BY COUNT(*) DESC";
+		String sql = "SELECT r.rating rating, r.cnt cnt"
+				+ " FROM (SELECT rating, COUNT(*) cnt,"
+				+ "			(CASE WHEN rating='G' THEN '1'"
+				+ "		  		   WHEN rating='PG-13' THEN '2'"
+				+ "		  		   WHEN rating='R' THEN '3'"
+				+ "		  		   WHEN rating='NC-17' THEN '4'"
+				+ "		  		   ELSE '5'"
+				+ "			END)ratingOrder"
+				+ "		FROM film"
+				+ "		GROUP BY rating"
+				+ "		ORDER BY ratingOrder)r";
+		// G : 전체관람, PG-13 : 13세 미만, R : 17세 미만, NC-17 : 18세 이상, PG : 부모의 지도 필요
 		try {
 			stmt = conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
@@ -667,13 +675,13 @@ public class StatsDataDao {
 		ResultSet rs = null;
 		conn = DBUtil.getConnection();
 		String sql = "SELECT s.store_id storeId, case t.w"
-				+ "					WHEN 0 THEN '월'"
-				+ "					WHEN 1 THEN '화'"
-				+ "					WHEN 2 THEN '수'"
-				+ "					WHEN 3 THEN '목'"
-				+ "					WHEN 4 THEN '금'"
-				+ "					WHEN 5 THEN '토'"
-				+ "					WHEN 6 THEN '일'"
+				+ "					WHEN 0 THEN 'Mon'"
+				+ "					WHEN 1 THEN 'Tue'"
+				+ "					WHEN 2 THEN 'Wed'"
+				+ "					WHEN 3 THEN 'Thu'"
+				+ "					WHEN 4 THEN 'Fri'"
+				+ "					WHEN 5 THEN 'Sat'"
+				+ "					WHEN 6 THEN 'Sun'"
 				+ "				END dayOfWeek,t.c amount"
 				+ " FROM (SELECT staff_id, WEEKDAY(payment_date) w, COUNT(*) c"
 				+ "		FROM payment"
