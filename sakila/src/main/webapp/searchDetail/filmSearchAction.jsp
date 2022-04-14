@@ -43,7 +43,7 @@
 	<div class="container-fluid">
 	<div>
 		<a href="<%=request.getContextPath()%>/index.jsp" class="btn btn-link">index</a>
-		<a href="<%=request.getContextPath()%>/filmSearchForm.jsp">재검색</a>
+		<a href="<%=request.getContextPath()%>/searchDetail/filmSearchForm.jsp">재검색</a>
 	</div>
 	<table class="table">
 	<% if(totalCount > 0) { // 데이터가 1개이상 존재한다면 테이블 및 개수 출력
@@ -91,12 +91,12 @@
 	<%
 		if(currentPage > 1) { // currentPage가 1보다 클 때 이전 버튼 보임
 	%>
-			<a href="<%=request.getContextPath()%>/filmSearchAction.jsp?currentPage=<%=currentPage-1%>&category=<%=category%>&rating=<%=rating%>&price=<%=price%>&length=<%=length%>&title=<%=title%>&actors=<%=actors%>" class="btn btn-outline-info">이전</a>
+			<a href="<%=request.getContextPath()%>/searchDetail/filmSearchAction.jsp?currentPage=<%=currentPage-1%>&category=<%=category%>&rating=<%=rating%>&price=<%=price%>&length=<%=length%>&title=<%=title%>&actors=<%=actors%>" class="btn btn-outline-info">이전</a>
 	<%
 		}
 		if(currentPage < lastPage) { // currentPage가 lastPage보다 작을 때만 다음 버튼 보임
 	%>
-			<a href="<%=request.getContextPath()%>/filmSearchAction.jsp?currentPage=<%=currentPage+1%>&category=<%=category%>&rating=<%=rating%>&price=<%=price%>&length=<%=length%>&title=<%=title%>&actors=<%=actors%>" class="btn btn-outline-info">다음</a>
+			<a href="<%=request.getContextPath()%>/searchDetail/filmSearchAction.jsp?currentPage=<%=currentPage+1%>&category=<%=category%>&rating=<%=rating%>&price=<%=price%>&length=<%=length%>&title=<%=title%>&actors=<%=actors%>" class="btn btn-outline-info">다음</a>
 	<%
 		}
 	%>

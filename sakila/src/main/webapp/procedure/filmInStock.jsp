@@ -25,7 +25,7 @@
 		<a href="<%=request.getContextPath()%>/index.jsp" class="btn btn-link">index</a>
 		<div class="text-danger"><%=msg %></div>
 		<!-- filmId, storeId 입력 -->
-		<form method="post" action="<%=request.getContextPath()%>/filmInStockAction.jsp">
+		<form method="post" action="<%=request.getContextPath()%>/procedure/filmInStockAction.jsp">
 			<table class="table">
 				<tr>
 					<th class="text-info text-center">영화 번호 </th>

@@ -5,10 +5,10 @@
 <%
 	// 유효성 판별
 	if(request.getParameter("minPurchase").equals("")) {
-		response.sendRedirect(request.getContextPath()+"/rewardsReport.jsp?msg="+URLEncoder.encode("최소 구매 횟수를 입력해주세요"));
+		response.sendRedirect(request.getContextPath()+"/procedure/rewardsReport.jsp?msg="+URLEncoder.encode("최소 구매 횟수를 입력해주세요"));
 		return;
 	} else if (request.getParameter("minDollar").equals("")) {
-		response.sendRedirect(request.getContextPath()+"/rewardsReport.jsp?msg="+URLEncoder.encode("최소 구매 금액을 입력해주세요"));
+		response.sendRedirect(request.getContextPath()+"/procedure/rewardsReport.jsp?msg="+URLEncoder.encode("최소 구매 금액을 입력해주세요"));
 		return;
 	}
 
@@ -40,7 +40,7 @@
 		</div>
 		<div>
 			<a href="<%=request.getContextPath()%>/index.jsp" class="btn btn-link">index</a>
-			<a href="<%=request.getContextPath()%>/rewardsReport.jsp">재검색</a>
+			<a href="<%=request.getContextPath()%>/procedure/rewardsReport.jsp">재검색</a>
 		</div>
 		<div class="text-center bg-info text-light"><%=map.get("count") %>명</div>
 		<!-- rewardsReport 리스트 -->

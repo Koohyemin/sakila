@@ -16,7 +16,7 @@
 <body>
 	<h1 class="text-center text-info">대여 정보 상세검색</h1>
 	<div class="container">
-	<form method="post" action="<%=request.getContextPath()%>/rentalSearchAction.jsp">
+	<form method="post" action="<%=request.getContextPath()%>/searchDetail/rentalSearchAction.jsp">
 	<a href="<%=request.getContextPath()%>/index.jsp" class="btn btn-link">index</a>
 		<table class="table table-striped">
 		<!-- 스토어ID 검색 -->

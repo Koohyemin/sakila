@@ -20,7 +20,7 @@
 		<a href="<%=request.getContextPath()%>/index.jsp" class="btn btn-link">index</a>
 		<div class="text-danger"><%=msg %></div>
 		<!-- min_monthly_purchases, min_dollar_amount_purchased 입력 -->
-		<form method="post" action="<%=request.getContextPath()%>/rewardsReportAction.jsp">
+		<form method="post" action="<%=request.getContextPath()%>/procedure/rewardsReportAction.jsp">
 			<table class="table">
 				<tr>
 					<td class="text-info text-center">최소 구매 횟수</td>

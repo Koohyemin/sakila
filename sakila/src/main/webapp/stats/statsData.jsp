@@ -54,12 +54,16 @@
 	
 	// 17. active가 0인 customer별 총amount
 	List<Map<String, Object>> amountByZeroActiveCustomer = statsDataDao.amountByZeroActiveCustomer();
+	
 	// 18. store 월별 매출
 	List<Map<String, Object>> monthByStore = statsDataDao.monthByStore();
+	
 	// 19. store 요일별 매출
 	List<Map<String, Object>> dayOfWeekByStore = statsDataDao.dayOfWeekByStore();
+	
 	// 20. store 시간대별 매출
 	List<Map<String, Object>> timeAmountByStore = statsDataDao.timeAmountByStore();
+	
 %>
 <!DOCTYPE html>
 <html>

@@ -5,10 +5,10 @@
 <%
 	// 유효성 판별
 	if(request.getParameter("filmId").equals("")) {
-		response.sendRedirect(request.getContextPath()+"/filmNotInStock.jsp?msg="+URLEncoder.encode("영화번호를 입력해주세요"));
+		response.sendRedirect(request.getContextPath()+"/procedure/filmNotInStock.jsp?msg="+URLEncoder.encode("영화번호를 입력해주세요"));
 		return;
 	} else if (request.getParameter("storeId")==null) {
-		response.sendRedirect(request.getContextPath()+"/filmNotInStock.jsp?msg="+URLEncoder.encode("지점을 선택해주세요"));
+		response.sendRedirect(request.getContextPath()+"/procedure/filmNotInStock.jsp?msg="+URLEncoder.encode("지점을 선택해주세요"));
 		return;
 	}
 
@@ -38,7 +38,7 @@
 		</div>
 		<div>
 			<a href="<%=request.getContextPath()%>/index.jsp" class="btn btn-link">index</a>
-			<a href="<%=request.getContextPath()%>/filmNotInStock.jsp">재검색</a>
+			<a href="<%=request.getContextPath()%>/procedure/filmNotInStock.jsp">재검색</a>
 		</div>
 		<!-- film_not_in_stock 리스트 -->
 		<table class="table">

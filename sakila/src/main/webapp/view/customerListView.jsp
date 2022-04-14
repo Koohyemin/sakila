@@ -71,13 +71,13 @@
 		// currentPage가 1보다 크면 이전이 보이도록 하고, 이전을 누르면 currentPage에서 -1값을 보냄
 			if(currentPage > 1) {
 		%>
-				<a href="<%=request.getContextPath()%>/customerListView.jsp?currentPage=<%=currentPage-1%>" class="btn btn-outline-info">이전</a>
+				<a href="<%=request.getContextPath()%>/view/customerListView.jsp?currentPage=<%=currentPage-1%>" class="btn btn-outline-info">이전</a>
 		<%
 			}
 		// currentPage가 lastPage보다 작으면 다음이 보이도록 하고, 다음을 누르면 currentPage에서 +1값을 보냄
 			if(currentPage < lastPage) {
 		%>
-				<a href="<%=request.getContextPath()%>/customerListView.jsp?currentPage=<%=currentPage+1%>" class="btn btn-outline-info">다음</a>
+				<a href="<%=request.getContextPath()%>/view/customerListView.jsp?currentPage=<%=currentPage+1%>" class="btn btn-outline-info">다음</a>
 		<%
 			}
 		%>

@@ -65,7 +65,7 @@
 	<div class="container-fluid">
 	<div>
 		<a href="<%=request.getContextPath()%>/index.jsp" class="btn btn-link">index</a>
-		<a href="<%=request.getContextPath()%>/rentalSearchForm.jsp">재검색</a>
+		<a href="<%=request.getContextPath()%>/searchDetail/rentalSearchForm.jsp">재검색</a>
 	</div>
 	<table class="table">
 	<%
@@ -123,14 +123,14 @@
 	%>
 			<!-- 이전버튼 누르면 currentPage-1의 값 보내기 --> 
 			<!-- 받은 storeId, customerName, beginDate, endDate 값 같이 넘김 -->
-			<a href="<%=request.getContextPath()%>/rentalSearchAction.jsp?currentPage=<%=currentPage-1%>&storeId=<%=storeId%>&customerName=<%=customerName%>&beginDate=<%=beginDate%>&endDate=<%=endDate%>" class="btn btn-outline-info">이전</a>
+			<a href="<%=request.getContextPath()%>/searchDetail/rentalSearchAction.jsp?currentPage=<%=currentPage-1%>&storeId=<%=storeId%>&customerName=<%=customerName%>&beginDate=<%=beginDate%>&endDate=<%=endDate%>" class="btn btn-outline-info">이전</a>
 	<%
 		}
 		if(currentPage < lastPage) { // currentPage가 lastPage보다 작으면 다음 버튼이 보이도록 설정
 	%>
 			<!-- 이전버튼 누르면 currentPage+1의 값 보내기 --> 
 			<!-- 받은 storeId, customerName, beginDate, endDate 값 같이 넘김 -->
-			<a href="<%=request.getContextPath()%>/rentalSearchAction.jsp?currentPage=<%=currentPage+1%>&storeId=<%=storeId%>&customerName=<%=customerName%>&beginDate=<%=beginDate%>&endDate=<%=endDate%>" class="btn btn-outline-info">다음</a>
+			<a href="<%=request.getContextPath()%>/searchDetail/rentalSearchAction.jsp?currentPage=<%=currentPage+1%>&storeId=<%=storeId%>&customerName=<%=customerName%>&beginDate=<%=beginDate%>&endDate=<%=endDate%>" class="btn btn-outline-info">다음</a>
 	<%
 		}
 	%>

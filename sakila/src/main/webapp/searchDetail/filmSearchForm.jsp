@@ -21,7 +21,7 @@
 	<h1 class="text-center text-info">영화 상세검색</h1>
 	<div class="container">
 	<a href="<%=request.getContextPath()%>/index.jsp" class="btn btn-link">index</a>
-	<form action="<%=request.getContextPath()%>/filmSearchAction.jsp" method="post">
+	<form method="post" action="<%=request.getContextPath()%>/searchDetail/filmSearchAction.jsp">
 		<table class="table table-striped">
 			<tr>
 				<!-- category 테이블에서 select -->
