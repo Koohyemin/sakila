@@ -14,12 +14,19 @@
 	}
 
 	int filmId = Integer.parseInt(request.getParameter("filmId")); // 입력받은 filmId값 대입
+	FilmDao filmDao = new FilmDao();
+	// 존재하지 않는 영화번호 유효성
+	int existFilmId = filmDao.existFilmId(filmId);
+	if(existFilmId==0) {
+		response.sendRedirect(request.getContextPath()+"/procedure/filmInStock.jsp?msg="+URLEncoder.encode("존재하지 않는 영화번호입니다"));
+		return;
+	}
+	
 	int storeId = Integer.parseInt(request.getParameter("storeId")); // 입력받은 storeId값 대입
-
 	System.out.println("film_in_stock_filmId : " + filmId);
 	System.out.println("film_in_stock_storeId : " + storeId);
 	
-	FilmDao filmDao = new FilmDao();
+	// 프로시저 결과 인벤토리번호
 	Map<String, Object> map = filmDao.filmInStockCall(filmId, storeId);
 	List<Integer> list = (List<Integer>)map.get("list");
 	int count = (Integer)map.get("count");

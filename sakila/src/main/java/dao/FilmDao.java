@@ -498,4 +498,36 @@ public class FilmDao {
 			System.out.println(id);
 		}
 	}
+	
+	// filmInStock filmNotInStock 프로시저 film_id 유효성
+	public int existFilmId(int filmId) {
+		int id = 0;
+		Connection conn = null;
+		conn = DBUtil.getConnection();
+		String sql = "SELECT film_id filmId FROM film WHERE film_id=?";
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		try {
+			stmt = conn.prepareStatement(sql);
+			stmt.setInt(1, filmId);
+			rs = stmt.executeQuery();
+			// 데이터베이스 변환
+			if(rs.next()) {
+				id = rs.getInt("filmId");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			try {
+				// 데이터베이스 자원 반환
+				rs.close();
+				stmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return id;
+	}
+	
 }
