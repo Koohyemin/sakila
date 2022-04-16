@@ -235,17 +235,34 @@ public class StatsDataDao {
 		}
 		return list;
 	}
-	public List<Map<String, Object>> filmCountByActor() {
+	public List<Map<String, Object>> dataByActor() {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		conn = DBUtil.getConnection();
-		String sql = "SELECT f.actor_id actorId, CONCAT(a.first_name,' ',a.last_name) actorName, COUNT(*) cnt"
-				+ " FROM film_actor f INNER JOIN actor a"
-				+ " ON f.actor_id=a.actor_id"
-				+ " GROUP BY f.actor_id"
-				+ " ORDER BY COUNT(*) DESC LIMIT 0,10";
+		String sql = "SELECT c.actorId actorId,"
+				+ "	    c.actorName actorName,"
+				+ "		 d.cnt filmCount,"
+				+ "		 c.cnt rentalCount,"
+				+ "		 c.amount amount"
+				+ " FROM (SELECT fa.actor_id actorId,"
+				+ "				 CONCAT(a.first_name,' ',a.last_name) actorName,"
+				+ " 				 COUNT(fa.film_id) cnt,"
+				+ "  				 SUM(p.amount) amount"
+				+ "	   FROM payment p INNER JOIN rental r ON p.rental_id = r.rental_id"
+				+ "				 			INNER JOIN inventory i ON r.inventory_id = i.inventory_id"
+				+ "				 			INNER JOIN film f ON i.film_id = f.film_id"
+				+ "				 			INNER JOIN film_actor fa ON f.film_id = fa.film_id"
+				+ "							INNER JOIN actor a ON fa.actor_id = a.actor_id"
+				+ "		GROUP BY fa.actor_id) c"
+				+ "		INNER JOIN (SELECT actor_id actorId,"
+				+ "						COUNT(*) cnt"
+				+ "						FROM film_actor"
+				+ "						GROUP BY actor_id) d"
+				+ "		ON d.actorId = c.actorId"
+				+ " ORDER BY c.amount DESC"
+				+ " LIMIT 0,10";
 		try {
 			stmt = conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
@@ -253,7 +270,9 @@ public class StatsDataDao {
 				Map<String, Object> m = new HashMap<String, Object>();
 				m.put("actorId", rs.getInt("actorId"));
 				m.put("actorName", rs.getString("actorName"));
-				m.put("cnt", rs.getInt("cnt"));
+				m.put("filmCount", rs.getInt("filmCount"));
+				m.put("rentalCount", rs.getInt("rentalCount"));
+				m.put("amount", rs.getDouble("amount"));
 				list.add(m);
 			}
 		} catch (SQLException e) {
@@ -483,30 +502,25 @@ public class StatsDataDao {
 		}
 		return list;
 	}
-	public List<Map<String, Object>> amountByActor() {
+	public List<Map<String, Object>> inventoryCountByrentalPeriod() {
 		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
 		Connection conn = null;
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		conn = DBUtil.getConnection();
-		String sql = "SELECT fa.actor_id actorId,CONCAT(a.first_name,' ',a.last_name) actorName, SUM(p.amount) amount"
-				+ " FROM payment p"
-				+ " INNER JOIN rental r ON p.rental_id = r.rental_id"
-				+ " INNER JOIN inventory i ON r.inventory_id = i.inventory_id"
-				+ " INNER JOIN film f ON i.film_id = f.film_id"
-				+ " INNER JOIN film_actor fa ON f.film_id = fa.film_id"
-				+ " INNER JOIN actor a ON fa.actor_id = a.actor_id"
-				+ " GROUP BY fa.actor_id"
-				+ " ORDER BY amount DESC LIMIT 0,10";
+		String sql = "SELECT CONCAT(YEAR(rental_date),'-',MONTH(rental_date)) rentalDate,"
+				+ "		 	 COUNT(inventory_id) cnt"
+				+ " FROM rental"
+				+ " GROUP BY rentalDate"
+				+ " ORDER BY rentalDate";
 		try {
 			stmt = conn.prepareStatement(sql);
 			rs = stmt.executeQuery();
 			
 			while(rs.next()) {
 				Map<String, Object> m = new HashMap<String, Object>();
-				m.put("actorId", rs.getInt("actorId"));
-				m.put("actorName", rs.getString("actorName"));
-				m.put("amount", rs.getDouble("amount"));
+				m.put("rentalDate", rs.getString("rentalDate"));
+				m.put("cnt", rs.getInt("cnt"));
 				list.add(m);
 			}
 		} catch (SQLException e) {
@@ -567,9 +581,8 @@ public class StatsDataDao {
 		PreparedStatement stmt = null;
 		ResultSet rs = null;
 		conn = DBUtil.getConnection();
-		String sql = "SELECT fc.category_id categoryId, c.name categoryName, ROUND(AVG(f.length), 1) lengthAvg"
-				+ " FROM film f"
-				+ " INNER JOIN film_category fc ON f.film_id=fc.film_id"
+		String sql = "SELECT fc.category_id categoryId, c.name categoryName, COUNT(f.film_id) filmCount, ROUND(AVG(f.length), 1) lengthAvg"
+				+ " FROM film f INNER JOIN film_category fc ON f.film_id=fc.film_id"
 				+ " INNER JOIN category c ON fc.category_id=c.category_id"
 				+ " GROUP BY fc.category_id";
 		try {
@@ -579,6 +592,7 @@ public class StatsDataDao {
 				Map<String, Object> m = new HashMap<String, Object>();
 				m.put("categoryId", rs.getInt("categoryId"));
 				m.put("categoryName", rs.getString("categoryName"));
+				m.put("filmCount", rs.getInt("filmCount"));
 				m.put("lengthAvg", rs.getDouble("lengthAvg"));
 				list.add(m);
 			}
@@ -755,18 +769,24 @@ public class StatsDataDao {
 		ResultSet rs = null;
 		conn = DBUtil.getConnection();
 		String sql = "SELECT c.country country,"
-				+ "		 c.cnt cusCnt,"
-				+ "		 COUNT(r.customer_id) rentalCnt"
+				+ "		 cc.cnt cityCnt,"
+				+ "	     c.cnt cusCnt,"
+				+ "		 COUNT(r.rental_id) rentalCnt"
 				+ " FROM (SELECT c.customer_id customerId,ctr.country country, COUNT(c.customer_id) cnt"
-				+ "	   	  FROM customer c INNER JOIN address a"
-				+ "			  ON c.address_id=a.address_id"
-				+ "			  INNER JOIN city ct"
-				+ "			  ON a.city_id=ct.city_id"
-				+ "			  INNER JOIN country ctr"
-				+ "			  ON ct.country_id=ctr.country_id"
-				+ "		  GROUP BY country)c "
+				+ "		  FROM customer c INNER JOIN address a"
+				+ "							  ON c.address_id=a.address_id"
+				+ "							  INNER JOIN city ct"
+				+ "							  ON a.city_id=ct.city_id"
+				+ "							  INNER JOIN country ctr"
+				+ "							  ON ct.country_id=ctr.country_id"
+				+ "		 GROUP BY country)c "
 				+ "	INNER JOIN rental r"
 				+ "	ON c.customerId=r.customer_id"
+				+ "	INNER JOIN (SELECT country, COUNT(*) cnt"
+				+ "			 	FROM city c INNER JOIN country cc"
+				+ "							ON c.country_id=cc.country_id"
+				+ "				GROUP BY country) cc"
+				+ "	ON c.country=cc.country"
 				+ " GROUP BY country";
 		try {
 			stmt = conn.prepareStatement(sql);
@@ -774,6 +794,7 @@ public class StatsDataDao {
 			while(rs.next()) {
 				Map<String, Object> m = new HashMap<String, Object>();
 				m.put("country", rs.getString("country"));
+				m.put("cityCnt", rs.getInt("cityCnt"));
 				m.put("cusCnt", rs.getInt("cusCnt"));
 				m.put("rentalCnt", rs.getInt("rentalCnt"));
 				list.add(m);
