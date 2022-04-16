@@ -747,5 +747,50 @@ public class StatsDataDao {
 		}
 		return list;
 	}
+	
+	public List<Map<String, Object>> dataByCountry() {
+		List<Map<String, Object>> list = new ArrayList<Map<String, Object>>();
+		Connection conn = null;
+		PreparedStatement stmt = null;
+		ResultSet rs = null;
+		conn = DBUtil.getConnection();
+		String sql = "SELECT c.country country,"
+				+ "		 c.cnt cusCnt,"
+				+ "		 COUNT(r.customer_id) rentalCnt"
+				+ " FROM (SELECT c.customer_id customerId,ctr.country country, COUNT(c.customer_id) cnt"
+				+ "	   	  FROM customer c INNER JOIN address a"
+				+ "			  ON c.address_id=a.address_id"
+				+ "			  INNER JOIN city ct"
+				+ "			  ON a.city_id=ct.city_id"
+				+ "			  INNER JOIN country ctr"
+				+ "			  ON ct.country_id=ctr.country_id"
+				+ "		  GROUP BY country)c "
+				+ "	INNER JOIN rental r"
+				+ "	ON c.customerId=r.customer_id"
+				+ " GROUP BY country";
+		try {
+			stmt = conn.prepareStatement(sql);
+			rs = stmt.executeQuery();
+			while(rs.next()) {
+				Map<String, Object> m = new HashMap<String, Object>();
+				m.put("country", rs.getString("country"));
+				m.put("cusCnt", rs.getInt("cusCnt"));
+				m.put("rentalCnt", rs.getInt("rentalCnt"));
+				list.add(m);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			// DB자원 해지
+			try {
+				rs.close();
+				stmt.close();
+				conn.close();
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+		}
+		return list;
+	}
 
 }

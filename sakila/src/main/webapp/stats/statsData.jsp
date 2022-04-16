@@ -64,6 +64,9 @@
 	// 20. store 시간대별 매출
 	List<Map<String, Object>> timeAmountByStore = statsDataDao.timeAmountByStore();
 	
+	// 21. country별 data
+	List<Map<String, Object>> dataByCountry = statsDataDao.dataByCountry();
+	
 %>
 <!DOCTYPE html>
 <html>
@@ -102,6 +105,7 @@
 			<li class="list-group-item"><a href="#18" class="text-dark">18. 매장 월별 매출</a></li>
 			<li class="list-group-item"><a href="#19" class="text-dark">19. 매장 요일별 매출</a></li>
 			<li class="list-group-item"><a href="#20" class="text-dark">20. 매장 시간대별 매출</a></li>
+			<li class="list-group-item"><a href="#21" class="text-dark">21. 나라별 데이터</a></li>
 		</ul>
 	</div>
 	
@@ -557,6 +561,29 @@
 						<tr>
 							<td><%=m.get("paymentHour")%></td>
 							<td><%=m.get("amount")%></td>
+						</tr>
+					</tbody>
+			<%
+				}
+			%>
+		</table>
+		<h1 class="text-center text-info" id="21">21. 나라별 데이터</h1>
+		<table class="table">
+			<thead class="thead-dark text-center">
+				<tr>
+					<th>나라</th>
+					<th>고객 수</th>
+					<th>대여 수</th>
+				</tr>
+			</thead>
+			<%
+				for(Map<String, Object> m : dataByCountry) {
+			%>
+					<tbody class="text-center">
+						<tr>
+							<td><%=m.get("country")%></td>
+							<td><%=m.get("cusCnt")%></td>
+							<td><%=m.get("rentalCnt")%></td>
 						</tr>
 					</tbody>
 			<%
