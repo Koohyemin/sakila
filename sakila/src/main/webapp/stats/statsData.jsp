@@ -19,8 +19,6 @@
 	// 5. customer별 rental_count(상위 1명)
 	Map<String, Object> bestRentalCustomer = statsDataDao.bestRentalCustomer();
 	
-	// 6. actor별 data
-	List<Map<String, Object>> dataByActor = statsDataDao.dataByActor();
 	
 	// 7. store별 film_count
 	List<Map<String, Object>> inventoryCountByStore = statsDataDao.inventoryCountByStore();
@@ -36,9 +34,6 @@
 	
 	// 11. film별 총amount
 	List<Map<String, Object>> amountByFilm = statsDataDao.amountByFilm();
-	
-	// 12. film별 rental_count
-	List<Map<String, Object>> rentalCountByFilm = statsDataDao.rentalCountByFilm();
 	
 	// 13. inventory별 rental_count
 	List<Map<String, Object>> rentalCountByInventory = statsDataDao.rentalCountByInventory();
@@ -90,13 +85,11 @@
 			<li class="list-group-item"><a href="#3" class="text-dark">3. 등급별 영화 개수</a></li>
 			<li class="list-group-item"><a href="#4" class="text-dark">4. 언어별 영화 개수</a></li>
 			<li class="list-group-item"><a href="#5" class="text-dark">5. 고객별 대여 개수(BEST1)</a></li>
-			<li class="list-group-item"><a href="#6" class="text-dark">6. 배우별 영화관련 데이터(TOP10)</a></li>
 			<li class="list-group-item"><a href="#7" class="text-dark">7. 매장별 재고 수</a></li>
 			<li class="list-group-item"><a href="#8" class="text-dark">8. 직원별 대여 횟수</a></li>
 			<li class="list-group-item"><a href="#9" class="text-dark">9. 길이(분)별 영화 개수</a></li>
 			<li class="list-group-item"><a href="#10" class="text-dark">10. 고객별 매장 이용 횟수(TOP10)</a></li>
 			<li class="list-group-item"><a href="#11" class="text-dark">11. 영화별 총 매출(TOP10)</a></li>
-			<li class="list-group-item"><a href="#12" class="text-dark">12. 영화별 대여 횟수(TOP10)</a></li>
 			<li class="list-group-item"><a href="#13" class="text-dark">13. 인벤토리별 대여 횟수(TOP10)</a></li>
 			<li class="list-group-item"><a href="#14" class="text-dark">14. 대여기간별 인벤토리 개수</a></li>
 			<li class="list-group-item"><a href="#15" class="text-dark">15. 국가별 고객 수(TOP10)</a></li>
@@ -229,33 +222,6 @@
 					</tr>
 			</tbody>
 		</table>
-		<h1 class="text-center text-info" id="6">6. 배우별 영화관련 데이터(TOP10)</h1>
-		<table class="table">
-			<thead class="thead-dark text-center">
-				<tr>
-					<th>배우 번호</th>
-					<th>이름</th>
-					<th>출연횟수</th>
-					<th>해당 영화 대여횟수</th>
-					<th>총매출</th>
-				</tr>
-			</thead>
-			<%
-				for(Map<String, Object> m : dataByActor) {
-			%>
-					<tbody class="text-center">
-						<tr>
-							<td><%=m.get("actorId")%></td>
-							<td><%=m.get("actorName")%></td>
-							<td><%=m.get("filmCount")%></td>
-							<td><%=m.get("rentalCount")%></td>
-							<td><%=m.get("amount")%></td>
-						</tr>
-					</tbody>
-			<%
-				}
-			%>
-		</table>
 		<h1 class="text-center text-info" id="7">7. 매장별 재고 수</h1>
 		<table class="table">
 			<thead class="thead-dark text-center">
@@ -361,50 +327,6 @@
 							<td><%=m.get("filmId")%></td>
 							<td><%=m.get("title")%></td>
 							<td><%=m.get("amount")%></td>
-						</tr>
-					</tbody>
-			<%
-				}
-			%>
-		</table>
-		<h1 class="text-center text-info" id="12">12. 영화별 대여 횟수(TOP10)</h1>
-		<table class="table">
-			<thead class="thead-dark text-center">
-				<tr>
-					<th>영화 번호</th>
-					<th>제목</th>
-					<th>대여 횟수</th>
-				</tr>
-			</thead>
-			<%
-				for(Map<String, Object> m : rentalCountByFilm) {
-			%>
-					<tbody class="text-center">
-						<tr>
-							<td><%=m.get("filmId")%></td>
-							<td><%=m.get("title")%></td>
-							<td><%=m.get("cnt")%></td>
-						</tr>
-					</tbody>
-			<%
-				}
-			%>
-		</table>
-		<h1 class="text-center text-info" id="13">13. 인벤토리별 대여 횟수(TOP10)</h1>
-		<table class="table">
-			<thead class="thead-dark text-center">
-				<tr>
-					<th>인벤토리 번호</th>
-					<th>대여 횟수</th>
-				</tr>
-			</thead>
-			<%
-				for(Map<String, Object> m : rentalCountByInventory) {
-			%>
-					<tbody class="text-center">
-						<tr>
-							<td><%=m.get("inventoryId")%></td>
-							<td><%=m.get("cnt")%></td>
 						</tr>
 					</tbody>
 			<%

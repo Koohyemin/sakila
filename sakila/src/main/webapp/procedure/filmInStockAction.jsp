@@ -29,7 +29,7 @@
 	// 프로시저 결과 인벤토리번호
 	Map<String, Object> map = filmDao.filmInStockCall(filmId, storeId);
 	List<Integer> list = (List<Integer>)map.get("list");
-	int count = (Integer)map.get("count");
+	int count = map.size();
 %>
 <!DOCTYPE html>
 <html>
@@ -39,35 +39,29 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 </head>
 <body>
-	<h1 class="text-center text-info">영화 재고 결과</h1>
+	<jsp:include page="/inc/upMenu.jsp"></jsp:include>
+	<div class="jumbotron">
+	  <h1>인텐토리 검색 결과</h1>
+	  <span class="text-primary"><h5>영화 번호 : <%=filmId%> / 지점 번호 : <%=storeId %></h5></span>
+	 </div>
 	<div class="container">
-		<div class="text-center text-success">
-			영화 번호 : <%=filmId%> / 
-			지점 번호 : <%=storeId %>
-		</div>
 		<div>
-			<a href="<%=request.getContextPath()%>/index.jsp" class="btn btn-link">index</a>
-			<a href="<%=request.getContextPath()%>/procedure/filmInStock.jsp">재검색</a>
-		</div>
+			<a href="<%=request.getContextPath()%>/procedure/filmInStock.jsp" style="background:#00004B; color:#FFFFFF;" class="btn">재검색</a>
+		</div><br>
 		<!-- film_in_stock 리스트 -->
 		<table class="table">
-		<%
-			if(count > 0) {
-		%>
-				<thead class="thead-dark text-center">
+				<thead class="text-center text-light" style="background:#00004B;">
 					<tr class="text-center">
-						<th colspan="2" class="text-info text-center">인벤토리 번호</th>
+						<th colspan="2">인벤토리 번호</th>
 					</tr>
 				</thead>
-		<%
-			}
-		%>
+
 			<%
 				for(int id : list) {
 			%>
 					<tbody class="text-center">
 						<tr>
-							<td colspan="2" class="text-center"><%=id %></td>
+							<td colspan="2" class="text-center"><%=id %>번</td>
 						</tr>
 					</tbody>
 			<%
@@ -81,11 +75,14 @@
 			<%		
 				} else if(count == 0) {
 			%>
-					<h5 class="text-danger text-center">재고가 없습니다.</h5>
+				<tr>
+					<th><h5 class="text-danger text-center">재고가 없습니다.</h5></th>
+				</tr>
 			<%
 				}
 			%>
 		</table>
 	</div>
+	<jsp:include page="/inc/footer.jsp"></jsp:include>
 </body>
 </html>

@@ -261,7 +261,7 @@ public class StatsDataDao {
 				+ "						FROM film_actor"
 				+ "						GROUP BY actor_id) d"
 				+ "		ON d.actorId = c.actorId"
-				+ " ORDER BY c.amount DESC"
+				+ " ORDER BY c.cnt DESC"
 				+ " LIMIT 0,10";
 		try {
 			stmt = conn.prepareStatement(sql);

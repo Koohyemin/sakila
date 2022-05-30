@@ -13,38 +13,55 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 </head>
 <body>
-	<h1 class="text-center text-info">매장 목록</h1>
-	<a href="<%=request.getContextPath()%>/index.jsp" class="btn btn-link">index</a>
-	<div class="container-fluid">
-	<table class="table">
-		<thead class="thead-dark text-center">
+	<jsp:include page="/inc/upMenu.jsp"></jsp:include>
+	<div class="jumbotron">
+	  <h1>매장 정보</h1>
+	  <span>SAKILA의 매장정보입니다</span>
+	 </div>
+	<div class="container">
+		<h1 class="text-center"><span class="text-danger"><%=list.get(0).get("storeId")%></span>번 지점 정보</h1>
+		<table class="table">
 			<tr>
-				<th>매장 번호</th>
-				<th>매니저 번호</th>
-				<th>이름</th>
-				<th>주소 번호</th>
-				<th>주소</th>
-				<th>업데이트일</th>
+				<th class="text-center text-light" style="background:#00004B;">지점</th>
+				<td ><%=list.get(0).get("storeId")%>번</td>
 			</tr>
-		</thead>
-		<tbody class="text-center">
-				<%
-					for(Map<String, Object> m : list) {
-						
-				%>
-						<tr>
-							<td><%=m.get("storeId")%></td>
-							<td><%=m.get("staffId")%></td>
-							<td><%=m.get("staffName")%></td>
-							<td><%=m.get("addressId")%></td>
-							<td><%=m.get("staffAddr")%></td>
-							<td><%=m.get("lastUpdate")%></td>
-						</tr>
-				<%
-					}
-				%>
-		</tbody>
-	</table>
+			<tr>
+				<th class="text-center text-light" style="background:#00004B;">주소</th>
+				<td ><%=list.get(0).get("staffAddr")%></td>
+			</tr>
+			<tr>
+				<th class="text-center text-light" style="background:#00004B;">담당 매니저</th>
+				<td ><%=list.get(0).get("staffName")%></td>
+			</tr>
+			<tr>
+				<th class="text-center text-light" style="background:#00004B; vertical-align: middle;">지도</th>
+				<td>
+					<img alt="" src="<%=request.getContextPath()%>/image/지도.png" style="width:619px;height: 326;">
+				</td>
+			</tr>
+		</table>
+		<h1 class="text-center"><span class="text-danger"><%=list.get(1).get("storeId")%></span>번 지점 정보</h1>
+		<table class="table">
+			<tr>
+				<th class="text-center text-light" style="background:#00004B;">지점</th>
+				<td ><%=list.get(1).get("storeId")%>번</td>
+			</tr>
+			<tr>
+				<th class="text-center text-light" style="background:#00004B;">주소</th>
+				<td ><%=list.get(1).get("staffAddr")%></td>
+			</tr>
+			<tr>
+				<th class="text-center text-light" style="background:#00004B;">담당 매니저</th>
+				<td ><%=list.get(1).get("staffName")%></td>
+			</tr>
+			<tr>
+				<th class="text-center text-light" style="background:#00004B;vertical-align: middle;">지도</th>
+				<td>
+					<img alt="" src="<%=request.getContextPath()%>/image/지도2.png">
+				</td>
+			</tr>
+		</table>
 	</div>
+	<jsp:include page="/inc/footer.jsp"></jsp:include>
 </body>
 </html>

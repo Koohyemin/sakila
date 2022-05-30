@@ -39,17 +39,19 @@
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
 </head>
 <body>
-	<h1 class="text-center text-info">영화 상세검색 결과</h1>
+	<jsp:include page="/inc/upMenu.jsp"></jsp:include>
+	<div class="jumbotron">
+	  <h1>영화 상세검색 결과 리스트</h1>
+	  <span class="text-primary"><h5>조건에 해당하는 총 [ <%=totalCount %> ]개의 영화가 존재합니다</h5></span>
+	 </div>
 	<div class="container-fluid">
 	<div>
-		<a href="<%=request.getContextPath()%>/index.jsp" class="btn btn-link">index</a>
-		<a href="<%=request.getContextPath()%>/searchDetail/filmSearchForm.jsp">재검색</a>
+		<a href="<%=request.getContextPath()%>/searchDetail/filmSearchForm.jsp" style="background:#00004B; color:#FFFFFF;" class="btn">재검색</a><br><br>
 	</div>
 	<table class="table">
 	<% if(totalCount > 0) { // 데이터가 1개이상 존재한다면 테이블 및 개수 출력
 	%>
-			<div class="text-success text-center">조건에 해당하는 총 [ <%=totalCount %> ]개의 영화가 존재합니다</div>
-			<thead class="thead-dark text-center">
+			<thead class="text-center text-light" style="background:#00004B;">
 				<tr>
 					<th>No</th>
 					<th>제목</th>
@@ -91,12 +93,12 @@
 	<%
 		if(currentPage > 1) { // currentPage가 1보다 클 때 이전 버튼 보임
 	%>
-			<a href="<%=request.getContextPath()%>/searchDetail/filmSearchAction.jsp?currentPage=<%=currentPage-1%>&category=<%=category%>&rating=<%=rating%>&price=<%=price%>&length=<%=length%>&title=<%=title%>&actors=<%=actors%>" class="btn btn-outline-info">이전</a>
+			<a href="<%=request.getContextPath()%>/searchDetail/filmSearchAction.jsp?currentPage=<%=currentPage-1%>&category=<%=category%>&rating=<%=rating%>&price=<%=price%>&length=<%=length%>&title=<%=title%>&actors=<%=actors%>" class="btn" style="background:#00004B; color:#FFFFFF;" class="btn">이전</a>
 	<%
 		}
 		if(currentPage < lastPage) { // currentPage가 lastPage보다 작을 때만 다음 버튼 보임
 	%>
-			<a href="<%=request.getContextPath()%>/searchDetail/filmSearchAction.jsp?currentPage=<%=currentPage+1%>&category=<%=category%>&rating=<%=rating%>&price=<%=price%>&length=<%=length%>&title=<%=title%>&actors=<%=actors%>" class="btn btn-outline-info">다음</a>
+			<a href="<%=request.getContextPath()%>/searchDetail/filmSearchAction.jsp?currentPage=<%=currentPage+1%>&category=<%=category%>&rating=<%=rating%>&price=<%=price%>&length=<%=length%>&title=<%=title%>&actors=<%=actors%>" class="btn" style="background:#00004B; color:#FFFFFF;" class="btn">다음</a>
 	<%
 		}
 	%>
