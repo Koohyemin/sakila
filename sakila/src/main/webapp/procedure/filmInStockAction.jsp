@@ -29,7 +29,7 @@
 	// 프로시저 결과 인벤토리번호
 	Map<String, Object> map = filmDao.filmInStockCall(filmId, storeId);
 	List<Integer> list = (List<Integer>)map.get("list");
-	int count = map.size();
+	int count = list.size();
 %>
 <!DOCTYPE html>
 <html>
