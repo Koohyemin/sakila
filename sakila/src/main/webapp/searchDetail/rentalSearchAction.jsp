@@ -59,20 +59,26 @@
 <meta charset="UTF-8">
 <title>rentalSearchAction</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
-	<h1 class="text-center text-info">대여 정보 상세검색 결과</h1>
+	<jsp:include page="/inc/upMenu.jsp"></jsp:include>
+	<div class="jumbotron">
+		<h1>대여 정보 검색 결과</h1>
+		<span class="text-primary"><h5>조건에 해당하는 총 [ <%=totalCount %> ]개의 대여정보가 존재합니다</h5></span>
+	</div>
 	<div class="container-fluid">
 	<div>
-		<a href="<%=request.getContextPath()%>/index.jsp" class="btn btn-link">index</a>
-		<a href="<%=request.getContextPath()%>/searchDetail/rentalSearchForm.jsp">재검색</a>
-	</div>
+		<a href="<%=request.getContextPath()%>/searchDetail/rentalSearchForm.jsp" class="btn" style="background:#00004B; color:#FFFFFF;">재검색</a>
+	</div><br>
 	<table class="table">
 	<%
 		if(totalCount > 0) { // 데이터가 1개이상 존재한다면 테이블 출력
 	%>
-			<div class="text-success text-center">조건에 해당하는 총 [ <%=totalCount %> ]개의 대여정보가 존재합니다</div>
-			<thead class="thead-dark text-center">
+			<thead class="text-center text-light" style="background: #00004B;">
 				<tr>
 					<th>대여 번호</th>
 					<th>대여일</th>
@@ -123,17 +129,18 @@
 	%>
 			<!-- 이전버튼 누르면 currentPage-1의 값 보내기 --> 
 			<!-- 받은 storeId, customerName, beginDate, endDate 값 같이 넘김 -->
-			<a href="<%=request.getContextPath()%>/searchDetail/rentalSearchAction.jsp?currentPage=<%=currentPage-1%>&storeId=<%=storeId%>&customerName=<%=customerName%>&beginDate=<%=beginDate%>&endDate=<%=endDate%>" class="btn btn-outline-info">이전</a>
+			<a href="<%=request.getContextPath()%>/searchDetail/rentalSearchAction.jsp?currentPage=<%=currentPage-1%>&storeId=<%=storeId%>&customerName=<%=customerName%>&beginDate=<%=beginDate%>&endDate=<%=endDate%>" class="btn" style="background:#00004B; color:#FFFFFF;">이전</a>
 	<%
 		}
 		if(currentPage < lastPage) { // currentPage가 lastPage보다 작으면 다음 버튼이 보이도록 설정
 	%>
 			<!-- 이전버튼 누르면 currentPage+1의 값 보내기 --> 
 			<!-- 받은 storeId, customerName, beginDate, endDate 값 같이 넘김 -->
-			<a href="<%=request.getContextPath()%>/searchDetail/rentalSearchAction.jsp?currentPage=<%=currentPage+1%>&storeId=<%=storeId%>&customerName=<%=customerName%>&beginDate=<%=beginDate%>&endDate=<%=endDate%>" class="btn btn-outline-info">다음</a>
+			<a href="<%=request.getContextPath()%>/searchDetail/rentalSearchAction.jsp?currentPage=<%=currentPage+1%>&storeId=<%=storeId%>&customerName=<%=customerName%>&beginDate=<%=beginDate%>&endDate=<%=endDate%>" class="btn" style="background:#00004B; color:#FFFFFF;">다음</a>
 	<%
 		}
 	%>
 	</div>
+	<jsp:include page="/inc/footer.jsp"></jsp:include>
 </body>
 </html>

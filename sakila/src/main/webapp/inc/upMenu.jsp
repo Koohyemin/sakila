@@ -1,9 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!-- 스킨 -->
-<div class="container-fluid" style="height:300px; background-image:url('<%=request.getContextPath()%>/image/film.jpg');">
+<div class="container-fluid" style="height:300px; background-image:url('<%=request.getContextPath()%>/image/index3.jpg'); background-repeat : no-repeat;background-size : cover;">
 	<br><br><br><br><br>
 		<h1 class="text-center">
-			<a href="<%=request.getContextPath()%>/home.jsp" class="text-light" style="text-decoration:none; vertical-align: middle;">SAKILA DVD</a>
+			<a href="<%=request.getContextPath()%>/home.jsp" style="text-decoration:none; vertical-align: middle; color:#FFFFFF;">SAKILA DVD</a>
 		</h1>
 </div>
 <!-- 스킨 끝 -->
@@ -17,13 +17,19 @@
 			<a href="<%=request.getContextPath()%>/searchDetail/filmSearchForm.jsp" class="nav-link text-secondary"><b>영화 리스트 / 상세 검색</b></a>
 		</li>
 		<li class="nav-item">
+	         <a href="<%=request.getContextPath()%>/view/actorInfoList.jsp" class="nav-link text-secondary">
+	            <b>배우별 출연영화 검색</b>
+	         </a>
+        </li>
+		
+		<li class="nav-item">
 			<a href="<%=request.getContextPath()%>/procedure/filmInStock.jsp" class="nav-link text-secondary"><b>인벤토리 검색</b></a>
 		</li>
 		<li class="nav-item">
 			<a href="<%=request.getContextPath()%>/table/storeList.jsp" class="nav-link text-secondary"><b>매장 정보</b></a>
 		</li>
 		<li class="nav-item dropdown">
-			<a class="nav-link dropdown-toggle text-secondary" href="#"><b>직원 시스템</b></a>
+			<a class="nav-link dropdown-toggle text-secondary" href="#" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><b>직원 시스템</b></a>
 				<div class="dropdown-menu">
 					<a class="dropdown-item" href="<%=request.getContextPath()%>/table/staffList.jsp">직원 로그인</a>
 					<a class="dropdown-item" href="<%=request.getContextPath()%>/table/staffList.jsp">직원 목록</a>

@@ -6,6 +6,7 @@
 	// 지점 번호 목록
 	StoreDao storeDao = new StoreDao();
 	List<Integer> storeList = storeDao.selectStoreIdList();
+	System.out.println(storeList.size());
 	// 유효성 판별
 	String msg = "";
 	if(request.getParameter("msg") != null) {
@@ -18,6 +19,10 @@
 <meta charset="UTF-8">
 <title>filmInStock</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 <body>
 	<jsp:include page="/inc/upMenu.jsp"></jsp:include>
@@ -25,6 +30,9 @@
 	  <h1>인텐토리 검색</h1>
 	  <span>영화번호와 해당지점을 입력하여 재고가 있는 DVD의 위치를 편안하게 찾아보세요!</span>
 	 </div>
+	 <div class="container">
+	<br><br><br><br><br>
+	</div>
 	<div class="container">
 		<div class="text-danger"><%=msg %></div>
 		<!-- filmId, storeId 입력 -->
@@ -53,6 +61,9 @@
 				</tr>
 			</table>
 		</form>
+	</div>
+	<div class="container">
+	<br><br><br><br><br><br>
 	</div>
 	<jsp:include page="/inc/footer.jsp"></jsp:include>
 </body>
